@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', '\App\Http\Controllers\UserController@index');
+Route::post('/', '\App\Http\Controllers\UserController@createUser');
+Route::get('/users', '\App\Http\Controllers\UserController@showUser');
+Route::get('/hotels', '\App\Http\Controllers\HotelController@hotelOverview');
+Route::get('/hotels/{id}', '\App\Http\Controllers\HotelController@hotelDetail');

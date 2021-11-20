@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'account',
         'email',
         'password',
     ];
@@ -41,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function storeComments(){
+        return $this->hasMany(Store_comments::class);
+    }
+    public function hotelComments(){
+        return $this->hasMany(Hotel_comments::class);
+    }
 }
