@@ -15,7 +15,7 @@
         <div class="header">
             <img class="icon" src="https://digitalsprout.co/wp-content/uploads/2019/07/plant.png" alt="">
             <h1 class="title">Go Green</h1>
-            <button class="login">Log out</button>
+            <button class="login"><a href="/login">Log out</a></button>
             <p class="slogan">Hello！ Customer</p>
             <div class="clear"></div>
         </div>

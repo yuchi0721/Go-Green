@@ -18,3 +18,11 @@ Route::post('/', '\App\Http\Controllers\UserController@createUser');
 Route::get('/users', '\App\Http\Controllers\UserController@showUser');
 Route::get('/hotels', '\App\Http\Controllers\HotelController@hotelOverview');
 Route::get('/hotels/{id}', '\App\Http\Controllers\HotelController@hotelDetail');
+
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
