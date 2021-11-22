@@ -93,6 +93,10 @@ table {
     margin-left:60px;
 
 }
+.list a{
+    text-decoration: none;
+    color:white;
+}
 .list ul{
     border-radius:10px;
     background-color: #a9d08d;
@@ -111,38 +115,10 @@ table {
     background-color: #e2f0d9;
     color:#007500;
 }
-.search{
-    float: right;
-    margin-right:80px;
-    width: 400px;
-    height: 40px;
-    border:#a9d08d solid 3px;
-    border-radius:10px;
-}
-.hotel{
+
+.mainContent{
     float: left;
-    margin-left:50px;
-}
-.hotelInfo{
-    margin-left:50px;
-    margin-top:20px;
-    padding:20px;
-    float: left;
-    border: #a9d08d solid 2px;
-}
-.hotelInfo img{
-    width: 200px;
-}
-.hotelInfo .detail{
-    padding-top:10px;
-}
-.hotelInfo button{
-    padding:5px 7px;
-    float: right;
-    margin-right: 5px;
-    font-size: 18px;
-    background-color: #a9d08d;
-    border-radius:4px;
-    color:white;
-    border:#007500 solid 2px;
+    padding-top: 10px;
+    padding-left: 30px;
+    width:80%;
 }

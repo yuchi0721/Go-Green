@@ -1,72 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset ('css/home.css')}}" type="text/css">
-    <link rel="shortcut icon" href="https://digitalsprout.co/wp-content/uploads/2019/07/plant.png" type="image/x-icon">
-    <title>Go Green</title>
-    <style>
-        .hotel_comments {
-            margin: 5%;
-            border-color: greenyellow;
-            border-style: solid;
-        }
-    </style>
+@section('sidebar')
+    @parent
 
+    <!-- <p>這邊會附加在主要的側邊欄。</p> -->
+@endsection
 
-
-
-</head>
-
-<body>
-    <div class="wrap">
-        <div class="header">
-            <img class="icon" src="https://digitalsprout.co/wp-content/uploads/2019/07/plant.png" alt="">
-            <h1 class="title">Go Green</h1>
-            <button class="login">Log out</button>
-            <p class="slogan">Hello！ Customer</p>
+@section('contents')
+    <div class="hotel">
+        <div class="hotel_info">
+            <span class="hotelImg">
+                <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+            </span>
+            <span class="introduction">
+                <ul>
+                    <li>旅店名稱：{{ $hotel->name }}</li>
+                    <li>旅店電話 : {{ $hotel->phone }}</li>
+                    <li>旅店地址：{{ $hotel->address }}</li>
+                    <li>旅店簡介：{{ $hotel->intro }}</li>
+                </ul>
+            </span>
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
-        <div class="content">
-            <div class="search"></div>
-            <div class="clear"></div>
-            <div class="list">
-                <ul>
-                    <li>關於我們</li>
-                    <li>綠色商店</li>
-                    <li>綠色旅店</li>
-                    <li id="lastLi">會員專區</li>
-                </ul>
+        <div class="hotel_comments">
+            <h2 class="comment">住客評論</h2>
+            <div class="leaveComment">
+                <span><img src="http://fakeimg.pl/50x50" alt=""><br>Custom</span>
+                <textarea type="text" name="comment" placeholder="留下評論吧！"></textarea>
+                <div class="clear"></div>
+                <input type="submit" id="submit">
+                <div class="clear"></div>
             </div>
-            <div class="hotel">
-                <div class="hotel_info">
-                    <span>
-                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
-                    </span>
-                    <span>
-                        <ul>
-                            <li>旅店名稱：{{ $hotel->name }}</li>
-                            <li>旅店簡介：{{ $hotel->intro }}</li>
-                            <li>旅店電話 : {{ $hotel->phone }}</li>
-                            <li>旅店地址：{{ $hotel->address }}</li>
-                        </ul>
-                    </span>
-                </div>
-                <div class="hotel_comments">
-                    <ul>
-                        @foreach($comments as $comment)
-                        <li>會員：{{ $comment->user_id }}</li>
-                        <li>評論：{{ $comment->comment }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <div class="footer"></div>
-        </div>
-</body>
+            <ul>
+                @foreach($comments as $comment)
+                <li><span><img src="http://fakeimg.pl/50x50" alt=""><br></span>{{ $comment->user_id }}</li>
+                <li class="commentDetail" id="commentDetail">{{ $comment->comment }}</li>
+                <div class="clear"></div>
+                @endforeach
 
-</html>
+                <div class="clear"></div>
+            </ul>
+            <div class="clear"></div>  
+        </div>
+    </div>
+    
+@endsection
+
+<style>
+    .hotel{
+        width:90%
+    }
+    .hotelImg{
+        float:left;
+    }
+    .introduction{
+        margin-left:30px;
+        float:left;
+    }
+    .hotelImg img{
+        width:500px;
+    }
+    .introduction li{
+        font-size:20px;
+        margin:15px;
+
+    }
+    .hotel_comments{
+        padding-bottom: 40px;
+        border-radius:7px;
+        margin-top:40px;
+        border:#a9d08d solid 2px;
+        margin-bottom:100px;
+    }
+    .hotel_comments ul{
+        margin-left:30px;
+    }
+    .hotel_comments li{
+        float:left;
+        text-align: center;
+        font-size:18px;
+    }
+    #commentDetail{
+        text-align: left;
+    }
+    .comment{
+        text-align:center;
+        font-size:24px;
+        height: 55px;
+        background-color:#a9d08d;
+        color:white;
+        border-radius:5px;
+        line-height:50px;
+        margin-bottom:20px;
+    }
+    .commentDetail{
+        border-radius:5px;
+        text-align: left;
+        padding: 15px;
+        width:80%;
+        margin-left:20px;
+        margin-bottom:15px;
+        border:#a9d08d solid 2px;
+    }
+    .leaveComment{
+        text-align:center;
+        margin-bottom:20px;
+        margin-right:20px;
+    }
+    .leaveComment span{
+        float:right;
+    }
+    .leaveComment textarea{
+        border-radius:5px;
+        text-align: left;
+        padding: 15px;
+        width:80%;
+        float:right;
+        margin-right:20px;
+        margin-bottom:15px;
+        border:#a9d08d solid 2px;
+        height:100px;
+    }
+    #submit{
+        width:150px;
+        color:#007500;
+        background-color:#a9d08d;
+        cursor: pointer;
+        float:right;
+        margin-right:100px;
+        border: #a9d08d solid 2px;
+        border-radius:7px;
+    }
+</style>

@@ -1,56 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset ('css/home.css')}}" type="text/css">
-    <link rel="shortcut icon" href="https://digitalsprout.co/wp-content/uploads/2019/07/plant.png" type="image/x-icon">
-    <title>Go Green</title>
+@section('sidebar')
+    @parent
 
+    <!-- <p>這邊會附加在主要的側邊欄。</p> -->
+@endsection
 
-
-</head>
-
-<body>
-    <div class="wrap">
-        <div class="header">
-            <img class="icon" src="https://digitalsprout.co/wp-content/uploads/2019/07/plant.png" alt="">
-            <h1 class="title">Go Green</h1>
-            <button class="login">Log out</button>
-            <p class="slogan">Hello！ Customer</p>
-            <div class="clear"></div>
-        </div>
-        <div class="clear"></div>
-        <div class="content">
-            <div class="search"></div>
-            <div class="clear"></div>
-            <div class="list">
-                <ul>
-                    <li>關於我們</li>
-                    <li>綠色商店</li>
-                    <li>綠色旅店</li>
-                    <li id="lastLi">會員專區</li>
-                </ul>
+@section('contents')
+    <div class="search"></div>
+    <div class="clear"></div>
+    <div class="hotel">
+        @foreach ($hotels as $hotel)
+        <div class="hotelInfo">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+            <div>
+                <label>旅店名稱：{{ $hotel->name }}</label>
             </div>
-
-            <div class="hotel">
-                @foreach ($hotels as $hotel)
-                <div class="hotelInfo">
-                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
-                    <div>
-                        <label>旅店名稱：{{ $hotel->name }}</label>
-                    </div>
-                    <div class="detail">
-                        <button><a href="/hotels/{{ $hotel->id }}">旅店詳細資訊</a></button>
-                    </div>
-                </div>
-                @endforeach
+            <div class="detail">
+                <button><a href="/hotels/{{ $hotel->id }}">旅店詳細資訊</a></button>
             </div>
-            <div class="clear"></div>
         </div>
-        <div class="footer"></div>
+        @endforeach
     </div>
-</body>
-</html>
+    <div class="clear"></div>
+    
+@endsection
+
+
+<style>
+.search{
+    float: right;
+    margin-right:80px;
+    width: 400px;
+    height: 40px;
+    border:#a9d08d solid 3px;
+    border-radius:10px;
+}
+.hotel{
+    float: left;
+    margin-left:50px;
+}
+.hotelInfo{
+    margin-left:50px;
+    margin-top:20px;
+    padding:20px;
+    float: left;
+    border: #a9d08d solid 2px;
+}
+.hotelInfo img{
+    width: 200px;
+}
+.hotelInfo .detail{
+    padding-top:10px;
+}
+.hotelInfo button{
+    padding:5px 7px;
+    float: right;
+    margin-right: 5px;
+    font-size: 18px;
+    background-color: #a9d08d;
+    border-radius:4px;
+    color:white;
+    border:#007500 solid 2px;
+}
+</style>
