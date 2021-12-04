@@ -46,6 +46,7 @@ table {
     clear:both;
 }
 .header{
+
     background-color: #a9d08d;
 }
 
@@ -96,20 +97,23 @@ table {
 .list a{
     text-decoration: none;
     color:white;
+    display: block;
 }
 .list ul{
-    border-radius:10px;
+
     background-color: #a9d08d;
 }
 #lastLi{
     border:none;
 }
 .list li{
+    width: 160px;
     color:white;
-    font-size:22px;
+    font-size:20px;
     font-weight: 400;
-    padding:25px 35px;
+    padding:20px 30px;
     border-bottom:#007500 solid 2px;
+    cursor:pointer;
 }
 .list ul li:hover{
     background-color: #e2f0d9;
@@ -120,5 +124,39 @@ table {
     float: left;
     padding-top: 10px;
     padding-left: 30px;
-    width:80%;
+    width:75%;
+}
+.member{
+    display:none;
+    background-color: #e2f0d9;
+    color:#007500;
+}
+.member li a{
+    color:#007500;
+    display: block;
+}
+.reviewShop{
+    display:none;
+    background-color: #e2f0d9;
+    color:#007500;
+}
+.reviewShop li a{
+    color:#007500;
+    display: block;
+}
+.reviewHotel{
+    display:none;
+    background-color: #e2f0d9;
+    color:#007500;
+}
+.reviewHotel li a{
+    color:#007500;
+    display: block;
+}
+#memberInfoModify{
+    border-top:#007500 solid 2px;
+}
+.list img{
+    width:16px;
+    margin-left:50px;
 }

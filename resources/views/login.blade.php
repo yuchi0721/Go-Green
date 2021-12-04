@@ -18,7 +18,7 @@
             <label for="password">驗證碼</label><br/>
             <input type="text" name="password" placeholder="請輸入驗證碼"><br/>
             <input type="submit" id="submit" value="登入"></br>
-            <a href="/signup">用戶註冊</a>
+            <a href="/">用戶註冊</a>
         </form>
      
     </div>
@@ -29,6 +29,7 @@
     .logining{
         width: 50%;
         margin: 0px auto;
+        margin-bottom:100px;
     }
     .logining h1{
         font-size:24px;
@@ -56,10 +57,16 @@
         margin-left:100px;
     }
     .logining a{
+        border-radius: 8px;
+        text-align:center;
+        font-size: 18px;
+        text-decoration:none;
+        display:block;
         width:200px;
         color:#007500;
         background-color:#a9d08d;
         cursor: pointer;
         margin-left:100px;
+        padding:15px 0px;
     }
 </style>
