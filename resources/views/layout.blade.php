@@ -10,6 +10,8 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <title>Go Green</title>
 </head>
@@ -28,7 +30,7 @@
         @section('sidebar')
             <div class="list">
                 <ul>
-                    <li>關於我們</li>
+                    <li><a href="/about">關於我們</a></li>
                     <li class="greenShop">綠色商店 <img id="greenShopArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
                     <div class="reviewShop subList">
                         <li><a>商店總覽</a></li>
@@ -38,7 +40,7 @@
                     <li class="greenHotel">綠色旅店 <img id="greenHotelArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></a></li>
                     <div class="reviewHotel subList">
                         <li><a href="/hotels">旅店總覽</a></li>
-                        <li><a>區域瀏覽</a></li>
+                        <li><a href="/hotelAreaview">區域瀏覽</a></li>
                         <li><a>編輯旅店</a></li>
                     </div>
                     <li id="lastLi" class="memberOnly ">會員專區 <img id="memberOnlyArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
