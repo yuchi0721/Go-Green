@@ -27,3 +27,10 @@ Route::get('/stores/{id}', [Controllers\StoreController::class,'storeDetail']);
 
 Route::get('/profile',[Controllers\UserController::class,'profile'])->middleware('isLogged');
 Route::get('/logout',[Controllers\UserController::class,'logout']);
+
+Route::get('/hotelAreaview', function () {
+    return view('hotelAreaview',['user_logged_in'=>false]);
+});
+Route::get('/about', function () {
+    return view('about',['user_logged_in'=>false]);
+});

@@ -31,17 +31,17 @@
         @section('sidebar')
             <div class="list">
                 <ul>
-                    <li>關於我們</li>
+                    <li><a href="/about">關於我們</a></li>
                     <li class="greenShop">綠色商店 <img id="greenShopArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
                     <div class="reviewShop subList">
                         <li><a href="/stores">商店總覽</a></li>
-                        <li><a>區域瀏覽</a></li>
+                        <li><a >區域瀏覽</a></li>
                         <li><a>編輯商店</a></li>
                     </div>
                     <li class="greenHotel">綠色旅店 <img id="greenHotelArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></a></li>
                     <div class="reviewHotel subList">
                         <li><a href="/hotels">旅店總覽</a></li>
-                        <li><a>區域瀏覽</a></li>
+                        <li><a href="/hotelAreaview">區域瀏覽</a></li>
                         <li><a>編輯旅店</a></li>
                     </div>
                     <li id="lastLi" class="memberOnly ">會員專區 <img id="memberOnlyArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
