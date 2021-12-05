@@ -7,24 +7,24 @@
 @endsection
 
 @section('contents')
-    <div class="hotel">
-        <div class="hotel_info">
-            <span class="hotelImg">
-                <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+    <div class="store">
+        <div class="store_info">
+            <span class="storeImg">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/7-eleven_logo.svg/255px-7-eleven_logo.svg.png" alt="">
             </span>
             <span class="introduction">
                 <ul>
-                    <li>旅店名稱：{{ $hotel->name }}</li>
-                    <li>旅店電話 : {{ $hotel->phone }}</li>
-                    <li>旅店地址：{{ $hotel->address }}</li>
-                    <li>旅店簡介：{{ $hotel->intro }}</li>
+                    <li>商店名稱：{{ $store->name }}</li>
+                    <li>商店電話 : {{ $store->phone }}</li>
+                    <li>商店地址：{{ $store->address }}</li>
+                    <li>商店簡介：{{ $store->intro }}</li>
                 </ul>
             </span>
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
-        <div class="hotel_comments">
-            <h2 class="comment">住客評論</h2>
+        <div class="store_comments">
+            <h2 class="comment">顧客評論</h2>
             @if($user_logged_in)
             <div class="leaveComment">
                 <span><img src="http://fakeimg.pl/50x50" alt=""><br>Custom</span>
@@ -44,7 +44,7 @@
             </ul>
             <div class="clear"></div>  
             @else
-            <h2>您需要登入來觀看留言</h2>
+            <h2>您必須登入來觀看留言</h2>
             @endif
         </div>
     </div>
@@ -52,17 +52,17 @@
 @endsection
 
 <style>
-    .hotel{
+    .store{
         width:90%
     }
-    .hotelImg{
+    .storeImg{
         float:left;
     }
     .introduction{
         margin-left:30px;
         float:left;
     }
-    .hotelImg img{
+    .storeImg img{
         width:500px;
     }
     .introduction li{
@@ -70,17 +70,17 @@
         margin:15px;
 
     }
-    .hotel_comments{
+    .store_comments{
         padding-bottom: 40px;
         border-radius:7px;
         margin-top:40px;
         border:#a9d08d solid 2px;
         margin-bottom:100px;
     }
-    .hotel_comments ul{
+    .store_comments ul{
         margin-left:30px;
     }
-    .hotel_comments li{
+    .store_comments li{
         float:left;
         text-align: center;
         font-size:18px;

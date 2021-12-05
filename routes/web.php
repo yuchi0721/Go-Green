@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', '\App\Http\Controllers\UserController@index');
-Route::post('/', '\App\Http\Controllers\UserController@createUser');
-Route::get('/users', '\App\Http\Controllers\UserController@showUser');
-Route::get('/hotels', '\App\Http\Controllers\HotelController@hotelOverview');
-Route::get('/hotels/{id}', '\App\Http\Controllers\HotelController@hotelDetail');
+Route::get('/signup', [Controllers\UserController::class,'signup'])->middleware('AlreadyLoggedIn');
+Route::post('/signup', [Controllers\UserController::class,'createUser'])->name('auth.create'); // "->name('form action name')"
+Route::post('/check', [Controllers\UserController::class,'check'])->name('auth.check');
+Route::get('/login', [Controllers\UserController::class,'login'])->middleware('AlreadyLoggedIn');
+Route::get('/users', [Controllers\UserController::class,'showUser']);
+Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
+Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
+
+Route::get('/stores', [Controllers\StoreController::class,'storeOverview']);
+Route::get('/stores/{id}', [Controllers\StoreController::class,'storeDetail']);
+
+Route::get('/profile',[Controllers\UserController::class,'profile'])->middleware('isLogged');
+Route::get('/logout',[Controllers\UserController::class,'logout']);

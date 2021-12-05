@@ -7,46 +7,40 @@
 @endsection
 
 @section('contents')
-    <div class="signup">
-        <h1>用戶註冊</h1>
+    <div class="logining">
+        <h1>登入</h1>
         <form method="POST" action="/">
             @csrf
-            <label for="name">姓名</label><br/>
-            <input type="text" name="name" placeholder="暱稱（之後可以修改）"><br/>
             <label for="account" >帳號</label><br/>
             <input type="text" name="account" placeholder="請輸入帳號"><br/>
-            <label for="email">Email</label><br/>
-            <input type="text" name="email" placeholder="請輸入電子郵件"><br/>
             <label for="password">密碼</label><br/>
-            <input type="text" name="password" placeholder="設定密碼"><br/>
-            <label for="password">密碼確認</label><br/>
-            <input type="text" name="password" placeholder="請再輸入一次密碼"><br/>
-            <input type="submit" id="submit">
+            <input type="text" name="password" placeholder="請輸入密碼 "><br/>
+            <label for="password">驗證碼</label><br/>
+            <input type="text" name="password" placeholder="請輸入驗證碼"><br/>
+            <input type="submit" id="submit" value="登入"></br>
+            <a href="/">用戶註冊</a>
         </form>
      
     </div>
     
 @endsection
-<!-- <head>
-    <link rel="stylesheet" href="{{ asset('css/test.css') }}">
-</head> -->
-
 
 <style>
-    .signup{
+    .logining{
         width: 50%;
         margin: 0px auto;
+        margin-bottom:100px;
     }
-    .signup h1{
+    .logining h1{
         font-size:24px;
         color: #007500 ;
         padding-left:150px;
         margin-bottom:20px;
     }
-    .signup label{
+    .logining label{
         font-size:18px;
     }
-    .signup input{
+    .logining input{
         width: 400px;
         padding: 10px;
         font-size: 18px;
@@ -62,6 +56,17 @@
         cursor: pointer;
         margin-left:100px;
     }
+    .logining a{
+        border-radius: 8px;
+        text-align:center;
+        font-size: 18px;
+        text-decoration:none;
+        display:block;
+        width:200px;
+        color:#007500;
+        background-color:#a9d08d;
+        cursor: pointer;
+        margin-left:100px;
+        padding:15px 0px;
+    }
 </style>
-
-
