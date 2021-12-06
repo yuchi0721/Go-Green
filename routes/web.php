@@ -25,7 +25,7 @@ Route::post('/update-user/{id}',[Controllers\UserController::class,'updateUser']
 Route::get('/reset-password',[Controllers\UserController::class,'resetPassword'])->middleware('isLogged');
 Route::post('/reset-password/{id}',[Controllers\UserController::class,'resetUserPassword']);
 
-Route::get('/users', [Controllers\UserController::class,'showUser']);
+Route::get('/users', [Controllers\UserController::class,'showUser'])->middleware('isLogged');
 
 Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
 Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
