@@ -30,6 +30,8 @@ Route::get('/users', [Controllers\UserController::class,'showUser']);
 Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
 Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
 Route::get('/hotel-areaview', [Controllers\HotelController::class,'hotelAreaview']);
+
+Route::get('/', [Controllers\HotelController::class,'about']);
 Route::get('/about', [Controllers\HotelController::class,'about']);
 
 Route::get('/stores', [Controllers\StoreController::class,'storeOverview']);

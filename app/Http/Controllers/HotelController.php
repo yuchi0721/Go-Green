@@ -25,7 +25,7 @@ class HotelController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
             $comments = \App\Models\Hotel_comments::where('hotel_id', $id)->get();
-            return view('hotelDetail', ['hotel' => $hotel, 'comments' => $comments, 'user_logged_in' => $user_logged_in]);
+            return view('hotel.hotelDetail', ['hotel' => $hotel, 'comments' => $comments, 'user_logged_in' => $user_logged_in]);
         }
         return view('hotel.hotelDetail', ['hotel' => $hotel,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
