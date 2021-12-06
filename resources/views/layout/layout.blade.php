@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="{{ asset ('icons/logo.png')}}" type="image/x-icon">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <title>Go Green</title>
@@ -30,14 +30,14 @@
         </div>
         <div class="clear"></div>
         <div class="content">
-        @section('sidebar')
+            @section('sidebar')
             <div class="list">
                 <ul>
                     <li><a href="/about">關於我們</a></li>
                     <li class="greenShop">綠色商店 <img id="greenShopArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
                     <div class="reviewShop subList">
                         <li><a href="/stores">商店總覽</a></li>
-                        <li><a >區域瀏覽</a></li>
+                        <li><a>區域瀏覽</a></li>
                         <li><a>編輯商店</a></li>
                     </div>
                     <li class="greenHotel">綠色旅店 <img id="greenHotelArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></a></li>
@@ -48,18 +48,26 @@
                     </div>
                     <li id="lastLi" class="memberOnly ">會員專區 <img id="memberOnlyArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
                     <div class="member sublist">
-                        <li id="memberInfoModify"><a>會員資料修改</a></li>
-                        <li><a>會員管理</a></li>
+                        @if($user_logged_in)
+                        <li id="memberInfoModify"><a href="/profile">會員資料修改</a></li>
+                        @if($isAdmin==true)
+                        <li><a href="users">會員管理</a></li>
+                        @endif
+                        @else
+                        <li id="memberInfoModify"><a href="/login">會員資料修改</a></li>
+                        @endif
                     </div>
+
+
                 </ul>
                 <div class="clear"></div>
             </div>
-            
-        @show
-        <div class="mainContent">
-            @yield('contents')
-            <div class="clear"></div>
-        </div>
+
+            @show
+            <div class="mainContent">
+                @yield('contents')
+                <div class="clear"></div>
+            </div>
             <div class="footer"></div>
             <div class="clear"></div>
         </div>
@@ -67,27 +75,27 @@
 
 </html>
 <script>
-    $(document).ready(function(){
-        $(".memberOnly").click(function(){
+    $(document).ready(function() {
+        $(".memberOnly").click(function() {
             $(".sublist").not(".member").slideUp(400);
             $(".member").slideToggle();
-            });
+        });
     });
 
-    $(document).ready(function(){
-    $(".greenShop").click(function(){
-        $(".sublist").not(".reviewShop").slideUp(400);
-        $(".reviewShop").slideToggle();
-        
+    $(document).ready(function() {
+        $(".greenShop").click(function() {
+            $(".sublist").not(".reviewShop").slideUp(400);
+            $(".reviewShop").slideToggle();
+
 
         });
     });
 
-    $(document).ready(function(){
-    $(".greenHotel").click(function(){
-        $(".sublist").not(".reviewHotel").slideUp(400);
-        $(".reviewHotel").slideToggle();
-     
+    $(document).ready(function() {
+        $(".greenHotel").click(function() {
+            $(".sublist").not(".reviewHotel").slideUp(400);
+            $(".reviewHotel").slideToggle();
+
         });
     });
 
@@ -110,6 +118,4 @@
     //             "-o-transform": "rotate(180deg)"
     //     }); 
     // }
-
-  
 </script>

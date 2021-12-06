@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.layout')
 
 @section('sidebar')
     @parent
@@ -7,9 +7,9 @@
 @endsection
 
 @section('contents')
-    <div class="signup">
+    <div class="update">
         <h1>用戶個人資料</h1>
-        <form method="POST" action="/">
+        <form method="POST" action="/update-user/{{$user->id}}">
             @csrf
             <div class ="results">
                 @if(Session::get('success'))
@@ -24,41 +24,37 @@
                 @endif
             </div>
             <label for="name">姓名</label><br/>
-            <input type="text" name="name" placeholder="暱稱（之後可以修改）" value="{{$user->name}}"><br/>
-            <!-- <span class="text-danger">@error('name'){{$message}}@enderror</span><br/> -->
+            <input type="text" name="name" placeholder="暱稱" value="{{$user->name}}"><br/>
+            <span class="text-danger">@error('name'){{$message}}@enderror</span><br/>
             <label for="account" >帳號</label><br/>
-            <input type="text" name="account" placeholder="帳號" value="{{$user->account}}"><br/>
+            <input type="text" name="account" placeholder="帳號" value="{{$user->account}}" readonly><br/>
             <!-- <span class="text-danger">@error('account'){{$message}}@enderror</span><br/> -->
             <label for="email">Email</label><br/>
             <input type="text" name="email" placeholder="電子郵件" value="{{$user->email}}"><br/>
-            <!-- <span class="text-danger">@error('email'){{$message}}@enderror</span><br/> -->
-            <label for="password">重設密碼</label><br/>
+            <span class="text-danger">@error('email'){{$message}}@enderror</span><br/>
             <input type="submit" id="submit" value="儲存">
+            <a href="/reset-password">重設密碼</a>
         </form>
-        <label for=""><a href="logout">登出</a></label>
     </div>
     
 @endsection
-<!-- <head>
-    <link rel="stylesheet" href="{{ asset('css/test.css') }}">
-</head> -->
 
 
 <style>
-    .signup{
+    .update{
         width: 50%;
         margin: 0px auto;
     }
-    .signup h1{
+    .update h1{
         font-size:24px;
         color: #007500 ;
         padding-left:150px;
         margin-bottom:20px;
     }
-    .signup label{
+    .update label{
         font-size:18px;
     }
-    .signup input{
+    .update input{
         width: 400px;
         padding: 10px;
         font-size: 18px;
@@ -76,6 +72,19 @@
     }
     .text-danger{
         color: red;
+    }
+    .update a {
+        border-radius: 8px;
+        text-align: center;
+        font-size: 18px;
+        text-decoration: none;
+        display: block;
+        width: 200px;
+        color: #007500;
+        background-color: #a9d08d;
+        cursor: pointer;
+        margin-left: 100px;
+        padding: 15px 0px;
     }
 </style>
 

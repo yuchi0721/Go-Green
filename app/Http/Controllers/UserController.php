@@ -5,26 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session ;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     public function signup()
     {
-        $user_logged_in = false;
+        $user_logged_in = $isAdmin = false;
         if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        return view('auth.signup', ['user_logged_in' => $user_logged_in]);
+        return view('auth.signup', ['isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function login()
     {
-        $user_logged_in = false;
+        $user_logged_in = $isAdmin  = false;
         if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        return view('auth.login', ['user_logged_in' => $user_logged_in]);
+        return view('auth.login', ['isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
 
@@ -40,7 +44,7 @@ class UserController extends Controller
         ]);
 
         //check password = password-checked
-        if ($request->passwordcheck!=$request->password){
+        if ($request->passwordcheck != $request->password) {
             return back()->with('fail', 'Password check error');
         }
 
@@ -59,15 +63,81 @@ class UserController extends Controller
             return back()->with('fail', 'something went wrong');
         }
     }
+    public function updateUser(Request $request)
+    {
+        // validate user input is correct
+        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $request->validate([
+            'name' => 'required',
+            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
+        ]);
+
+
+        //update a User
+
+        $user = User::where('account', '=', $user->account)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+
+        //if update model successful, return success message,else return error
+        if ($user) {
+            return back()->with('success', 'You have been successfuly update');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
+
+    public function resetPassword()
+    {
+        if (session()->has('LoggedUser')) {
+
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        return view('admin.resetPassword', ['user' => $user, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
+
+    public function resetUserPassword(Request $request)
+    {
+        // validate user input is correct
+        $user = User::where('id', '=', session('LoggedUser'))->first();
+        $request->validate([
+            'password' => 'required|min:8|max:12',
+            'passwordcheck' => 'required|min:8|max:12',
+        ]);
+
+        //check password = password-checked
+        if ($request->passwordcheck != $request->password) {
+            return back()->with('fail', 'Password check error');
+        }
+        //reset User password
+        $user = User::where('account', $user->account)->update([
+            'password' => Hash::make($request->password),
+        ]);
+        //if reset User password successful, return success message,else return error
+        if ($user) {
+            return back()->with('success', 'You have been successfuly reset');
+        } else {
+            return back()->with('fail', 'reset error');
+        }
+    }
 
     public function showUser()
     {
         $users = \App\Models\User::get();
-        $user_logged_in = false;
+        $user_logged_in = $isAdmin  = false;
         if (session()->has('LoggedUser')) {
             $user_logged_in = true;
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
         }
-        return view('users', ['users' => $users,'user_logged_in'=>$user_logged_in]);
+        if ($isAdmin) {
+            return view('admin.users', ['users' => $users, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        }
+        return view('admin.profile', ['user' => $user, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function check(Request $request)
@@ -76,17 +146,17 @@ class UserController extends Controller
             'account' => 'required',
             'password' => 'required|min:8|max:12',
             //google reCAPTCHA mechansim => call api with parameters(secretKey,response,remoteip)
-            'g-recaptcha-response' => function($attribute, $value, $fail){
+            'g-recaptcha-response' => function ($attribute, $value, $fail) {
                 $secretKey = config('services.recaptcha.secret');
                 $response = $value;
                 $userIP = $_SERVER['REMOTE_ADDR'];
                 $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$response&remoteip=$userIP";
                 $response = \file_get_contents($url);
                 $response = json_decode($response);
-                if(!$response->success){
-                    Session::flash('g-recaptcha-response','please check reCaptcha');
-                    Session::flash('alert-class','alert-danger');
-                    $fail($attribute.'google reCaptcha failed');
+                if (!$response->success) {
+                    Session::flash('g-recaptcha-response', 'please check reCaptcha');
+                    Session::flash('alert-class', 'alert-danger');
+                    $fail($attribute . 'google reCaptcha failed');
                 }
             },
         ]);
@@ -109,11 +179,13 @@ class UserController extends Controller
     public function profile()
     {
         if (session()->has('LoggedUser')) {
+
             $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
             $user_logged_in = true;
         }
 
-        return view('admin.profile', ['user' => $user, 'user_logged_in' => $user_logged_in]);
+        return view('admin.profile', ['user' => $user, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function logout()
@@ -123,5 +195,4 @@ class UserController extends Controller
             return back();
         }
     }
-
 }

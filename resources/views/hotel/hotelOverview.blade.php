@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout.layout')
 
 @section('sidebar')
     @parent
@@ -9,15 +9,15 @@
 @section('contents')
     <div class="search"></div>
     <div class="clear"></div>
-    <div class="store">
-        @foreach ($stores as $store)
-        <div class="storeInfo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/7-eleven_logo.svg/255px-7-eleven_logo.svg.png" alt="">
+    <div class="hotel">
+        @foreach ($hotels as $hotel)
+        <div class="hotelInfo">
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
             <div>
-                <label>商店名稱：{{ $store->name }}</label>
+                <label>旅店名稱：{{ $hotel->name }}</label>
             </div>
             <div class="detail">
-                <button><a href="/stores/{{ $store->id }}">商店詳細資訊</a></button>
+                <button><a href="/hotels/{{ $hotel->id }}">旅店詳細資訊</a></button>
             </div>
         </div>
         @endforeach
@@ -36,24 +36,24 @@
     border:#a9d08d solid 3px;
     border-radius:10px;
 }
-.store{
+.hotel{
     float: left;
     margin-left:50px;
 }
-.storeInfo{
+.hotelInfo{
     margin-left:50px;
     margin-top:20px;
     padding:20px;
     float: left;
     border: #a9d08d solid 2px;
 }
-.storeInfo img{
+.hotelInfo img{
     width: 200px;
 }
-.storeInfo .detail{
+.hotelInfo .detail{
     padding-top:10px;
 }
-.storeInfo button{
+.hotelInfo button{
     padding:5px 7px;
     float: right;
     margin-right: 5px;

@@ -1,5 +1,5 @@
 
-@extends('layout')
+@extends('layout/layout')
 
 @section('sidebar')
     @parent
