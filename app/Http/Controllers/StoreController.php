@@ -14,7 +14,7 @@ class StoreController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
             $comments = \App\Models\Hotel_comments::where('hotel_id', $id)->get();
-            return view('store.storeDetail',['store' => $store,'comments'=>$comments, 'user_logged_in' => $user_logged_in]);
+            return view('store.storeDetail',['store' => $store,'comments'=>$comments,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
         return view('store.storeDetail',['store' => $store,'isAdmin' => $isAdmin,'user_logged_in' => $user_logged_in]);
     }
