@@ -34,3 +34,4 @@ Route::get('/hotelAreaview', function () {
 Route::get('/about', function () {
     return view('about',['user_logged_in'=>false]);
 });
+

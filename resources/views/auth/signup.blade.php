@@ -33,10 +33,11 @@
             <input type="text" name="email" placeholder="請輸入電子郵件" value="{{old('email')}}"><br/>
             <span class="text-danger">@error('email'){{$message}}@enderror</span><br/>
             <label for="password">密碼</label><br/>
-            <input type="text" name="password" placeholder="設定密碼" ><br/>
+            <input type="password" name="password" placeholder="設定密碼" ><br/>
             <span class="text-danger">@error('password'){{$message}}@enderror</span><br/>
             <label for="password">密碼確認</label><br/>
-            <input type="text" name="password" placeholder="請再輸入一次密碼"><br/>
+            <input type="password" name="passwordcheck" placeholder="請再輸入一次密碼"><br/>
+            <span class="text-danger">@error('passwordcheck'){{$message}}@enderror</span><br/>
             <input type="submit" id="submit">
         </form>
      
