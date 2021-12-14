@@ -14,10 +14,10 @@
             </span>
             <span class="introduction">
                 <ul>
-                    <li>旅店名稱：{{ $hotel->name }}</li>
-                    <li>旅店電話 : {{ $hotel->phone }}</li>
-                    <li>旅店地址：{{ $hotel->address }}</li>
-                    <li>旅店簡介：{{ $hotel->intro }}</li>
+                    <li><img src="{{ asset ('icons/hotel.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->name }}</li>
+                    <li><img src="{{ asset ('icons/phone.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->phone }}</li>
+                    <li><img src="{{ asset ('icons/locate.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->address }}</li>
+                    <li id="info">{{ $hotel->intro }}</li>
                 </ul>
             </span>
             <div class="clear"></div>
@@ -66,6 +66,7 @@
         width:500px;
     }
     .introduction li{
+        width:400px;
         font-size:20px;
         margin:15px;
 
@@ -81,6 +82,7 @@
         margin-left:30px;
     }
     .hotel_comments li{
+
         float:left;
         text-align: center;
         font-size:18px;
@@ -135,5 +137,9 @@
         margin-right:100px;
         border: #a9d08d solid 2px;
         border-radius:7px;
+    }
+    #info{
+        width:400px;
+        margin-top:30px;
     }
 </style>

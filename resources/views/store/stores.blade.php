@@ -60,7 +60,7 @@
                         <span class="text-danger">@error('name'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">商店簡介</label>
+                        <label class="form-label" id="introduction">商店簡介</label>
                         <textarea class="form-control" name="intro" type="url">{{$store->intro}}</textarea>
                     </div>
                     <div class="mb-3">
@@ -104,7 +104,7 @@
                     <span class="text-danger">@error('name'){{$message}}@enderror</span><br />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">商店簡介</label>
+                    <label class="form-label" id="introduction">商店簡介</label>
                     <textarea class="form-control" name="intro" type="url"></textarea>
                 </div>
                 <div class="mb-3">
@@ -184,8 +184,8 @@
         width: 60%;
         /* Could be more or less, depending on screen size */
         border-radius: 15px;
-        height: 50%;
-        text-align: center;
+
+        text-align: right;
     }
 
     /* table */
@@ -243,7 +243,7 @@
     }
 
     .modal-content input {
-
+        margin-right: 25%;
         width: 400px;
         padding: 10px;
         font-size: 16px;
@@ -254,7 +254,7 @@
     }
 
     .modal-content textarea {
-
+        margin-right: 25%;
         width: 400px;
         padding: 10px;
         font-size: 16px;
@@ -265,6 +265,7 @@
     }
 
     #submit {
+        margin-right: 40%;
         padding: 10px;
         font-size: 16px;
         border-radius: 8px;
@@ -273,6 +274,7 @@
         color: #007500;
         background-color: #a9d08d;
         cursor: pointer;
+        margin-bottom: 30px;
     }
 
     .close {
@@ -281,5 +283,9 @@
         cursor: pointer;
         display: block;
         width: 30px;
+    }
+    #introduction{
+        position:relative;
+        bottom:70;
     }
 </style>

@@ -14,10 +14,10 @@
         <div class="storeInfo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/7-eleven_logo.svg/255px-7-eleven_logo.svg.png" alt="">
             <div>
-                <label>商店名稱：{{ $store->name }}</label>
+                <label>{{ $store->name }}</label>
             </div>
             <div class="detail">
-                <button><a href="/stores/{{ $store->id }}">商店詳細資訊</a></button>
+                <button><a href="/stores/{{ $store->id }}">more...</a></button>
             </div>
         </div>
         @endforeach
@@ -41,19 +41,26 @@
     margin-left:50px;
 }
 .storeInfo{
+    border-radius:10px;
+    width: 220px;
     margin-left:50px;
     margin-top:20px;
     padding:20px;
     float: left;
-    border: #a9d08d solid 2px;
+    background-color:rgb(245, 245, 245);
+    /* border: #a9d08d solid 2px; */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease-in-out;
 }
 .storeInfo img{
     width: 200px;
+    margin-bottom:15px;
 }
 .storeInfo .detail{
     padding-top:10px;
 }
 .storeInfo button{
+    margin-top: 5px;
     padding:5px 7px;
     float: right;
     margin-right: 5px;
@@ -61,6 +68,16 @@
     background-color: #a9d08d;
     border-radius:4px;
     color:white;
-    border:#007500 solid 2px;
+    border:none;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+.storeInfo:hover{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+}
+.storeInfo button a{
+    text-decoration: none;
+    color:white;
+    font-size: 18px;
 }
 </style>
