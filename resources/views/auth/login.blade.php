@@ -22,7 +22,7 @@
         <input type="text" name="account" placeholder="請輸入帳號" value="{{old('account')}}"><br />
         <span class="text-danger">@error('account'){{$message}}@enderror</span><br />
         <label for="password">密碼</label><br />
-        <input type="text" name="password" placeholder="請輸入密碼 " value="{{old('password')}}"><br />
+        <input type="password" name="password" placeholder="請輸入密碼 " value="{{old('password')}}"><br />
         <span class="text-danger">@error('password'){{$message}}@enderror</span><br />
         <label for="password">驗證碼</label><br />
         <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}"></div>

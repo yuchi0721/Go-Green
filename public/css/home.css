@@ -107,6 +107,7 @@ table {
     border:none;
 }
 .list li{
+    display: block;
     width: 160px;
     color:white;
     font-size:20px;
@@ -119,7 +120,10 @@ table {
     background-color: #e2f0d9;
     color:#007500;
 }
-
+.list a:hover{
+    background-color: #e2f0d9;
+    color:#007500;
+}
 .mainContent{
     float: left;
     padding-top: 10px;
