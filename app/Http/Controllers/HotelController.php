@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\greenHotel;
 use Illuminate\Http\Request;
 use App\Models\User;
 class HotelController extends Controller
@@ -15,7 +15,82 @@ class HotelController extends Controller
         }
         return view('about', ['isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
+
+    public function createHotel(Request $request)
+    {
+        // validate user input is correct
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+        ]);
+
+        //new a User model and save into it
+        $hotel = new \App\Models\greenHotel;
+        $hotel->name = $request->name;
+        $hotel->intro = $request->intro;
+        $hotel->address = $request->address;
+        $hotel->phone = $request->phone;
+        $query = $hotel->save();
+
+        //if save model successful, return success message,else return error
+        if ($query) {
+            return back()->with('success', 'You have been successfuly create hotel');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
     
+    public function deleteHotel($id){
+        $hotel = greenHotel::find($id); 
+        $hotel->delete();
+        if ($hotel) {
+            return back()->with('success', 'You have been successfuly create hotel');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
+
+    public function editHotel(Request $request,$id)
+    {
+        // validate user input is correct
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+        ]);
+
+        //new a User model and save into it
+        $hotel = greenHotel::where('id',$id)->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'intro' => $request->intro,
+        ]);
+
+        //if save model successful, return success message,else return error
+        if ($hotel) {
+            return back()->with('success', 'You have been successfuly create hotel');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
+
+    public function showHotels(){
+        $hotels = \App\Models\greenHotel::get();
+        $user_logged_in = $isAdmin  = false;
+        if (session()->has('LoggedUser')) {
+            $user_logged_in = true;
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+        }
+
+        if ($isAdmin) {
+            return view('hotel.hotels', ['hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        }
+
+        return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+
+    }
+
     public function hotelDetail($id)
     {
         $hotel = \App\Models\greenHotel::find($id);

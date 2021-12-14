@@ -63,6 +63,7 @@ class UserController extends Controller
             return back()->with('fail', 'something went wrong');
         }
     }
+    
     public function updateUser(Request $request)
     {
         // validate user input is correct
@@ -76,6 +77,30 @@ class UserController extends Controller
         //update a User
 
         $user = User::where('account', '=', $user->account)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+
+        //if update model successful, return success message,else return error
+        if ($user) {
+            return back()->with('success', 'You have been successfuly update');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
+    public function adminUpdateUser(Request $request,$id)
+    {
+        // validate user input is correct
+        $request->validate([
+            'name' => 'required',
+            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($id)],
+        ]);
+
+
+        //update a User
+
+        $user = User::where('id', '=', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);

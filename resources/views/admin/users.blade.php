@@ -10,9 +10,9 @@
 <table class="usersTable">
     <thead>
         <tr>
-            <th width="25%" >使用者名稱</th>
-            <th width="25%" >帳號</th>
-            <th width="36%" >信箱</th>
+            <th width="25%">使用者名稱</th>
+            <th width="25%">帳號</th>
+            <th width="36%">信箱</th>
             <th width="10%" class="lastTH"></th>
         </tr>
     </thead>
@@ -25,14 +25,28 @@
             <td>{{$u->email}}</td>
             <td class="lastTD"><label for="" onclick="open_modal('edit_user{{ $u->id }}')">修改</label></td>
         </tr>
-        
+
         <div id="edit_user{{ $u->id }}" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="close_modal('edit_user{{ $u->id }}')">&times;</span>
-                <form method="POST" action="/">
+                <form method="POST" action="/users/{{$u->id}}">
+                    @csrf
+                    <div class="results">
+                        @if(Session::get('success'))
+                        <div class="alert alert-success">
+                            {{Session::get('success')}}
+                        </div>
+                        @endif
+                        @if(Session::get('fail'))
+                        <div class="alert alert-danger">
+                            {{Session::get('fail')}}
+                        </div>
+                        @endif
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">使用者名稱</label>
-                        <input class="form-control" value="{{$u->name}}" name="update_keyword" type="text" required>
+                        <input class="form-control" value="{{$u->name}}" name="name" type="text" required><br/>
+                        <span class="text-danger">@error('name'){{$message}}@enderror</span><br/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">帳號</label>
@@ -40,7 +54,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">email</label>
-                        <input class="form-control" value="{{$u->email}}" name="update_customer" type="text" required>
+                        <input class="form-control" value="{{$u->email}}" name="email" type="text" required><br/> 
+                        <span class="text-danger">@error('email'){{$message}}@enderror</span><br/>
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>
@@ -67,78 +82,89 @@
 
 <style>
     .modal {
-      display: none;
-      /* Hidden by default */
-      position: fixed;
-      /* Stay in place */
-      z-index: 1;
-      /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%;
-      /* Full width */
-      height: 100%;
-      /* Full height */
-      overflow: auto;
-      /* Enable scroll if needed */
-      background-color: rgb(0, 0, 0);
-      /* Fallback color */
-      background-color: rgba(0, 0, 0, 0.4);
-      /* Black w/ opacity */
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
     }
 
     /* Modal Content/Box */
     .modal-content {
-      background-color: #fefefe;
-      margin: 10% auto;
-      /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 60%;
-      /* Could be more or less, depending on screen size */
-    border-radius:15px;
-    height:50%;
-    text-align: center;
-    }
-    /* table */
-    .usersTable{
-        margin:auto;
-        width:80%;
+        background-color: #fefefe;
+        margin: 10% auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+        /* Could be more or less, depending on screen size */
+        border-radius: 15px;
+        height: 50%;
         text-align: center;
     }
-    .usersTable tbody{
-        overflow-x:hidden;
-        overflow-y:auto;
+
+    /* table */
+    .usersTable {
+        margin: auto;
+        width: 80%;
+        text-align: center;
     }
-    .usersTable th{
-        padding:15px 0px;
-        background-color:#a9d08d;
-        border-right:#007500 solid 2px;
+
+    .usersTable tbody {
+        overflow-x: hidden;
+        overflow-y: auto;
     }
-    .usersTable td{
-        padding:15px 0px;
+
+    .usersTable th {
+        padding: 15px 0px;
+        background-color: #a9d08d;
+        border-right: #007500 solid 2px;
+    }
+
+    .usersTable td {
+        padding: 15px 0px;
         border-right: 2px #bbb solid;
     }
-    .usersTable th.lastTH{
-        border-right:none;
+
+    .usersTable th.lastTH {
+        border-right: none;
     }
-    .usersTable tr:nth-child(odd){
+
+    .usersTable tr:nth-child(odd) {
         background-color: rgb(230, 230, 230);
     }
-    .usersTable tr:nth-child(even){     
+
+    .usersTable tr:nth-child(even) {
         background-color: rgb(246, 246, 246);
     }
-    .usersTable tr:hover{
+
+    .usersTable tr:hover {
         background-color: rgb(222, 222, 222);
     }
-    .usersTable td.lastTD{
-        border-right:none;
+
+    .usersTable td.lastTD {
+        border-right: none;
         cursor: pointer;
         display: block;
     }
-    .usersTable td.lastTD label{
+
+    .usersTable td.lastTD label {
         cursor: pointer;
     }
+
     /* modidy */
     .modal-content label {
         font-size: 16px;
@@ -154,6 +180,7 @@
         margin-top: 10px;
         margin-bottom: 25px;
     }
+
     #submit {
         padding: 10px;
         font-size: 16px;
@@ -164,11 +191,12 @@
         background-color: #a9d08d;
         cursor: pointer;
     }
-    .close{
-        text-align:left;
+
+    .close {
+        text-align: left;
         font-size: 24px;
         cursor: pointer;
-        display:block;
-        width:30px;
+        display: block;
+        width: 30px;
     }
 </style>
