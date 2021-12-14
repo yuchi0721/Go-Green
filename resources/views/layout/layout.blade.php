@@ -40,7 +40,7 @@
                         <li><a>區域瀏覽</a></li>
                         @if($user_logged_in)
                         @if($isAdmin==true)
-                        <li><a>編輯商店</a></li>
+                        <li><a href="/admin-stores">編輯商店</a></li>
                         @endif
                         @endif
                     </div>

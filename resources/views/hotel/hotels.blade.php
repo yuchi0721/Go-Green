@@ -71,7 +71,6 @@
                     <div class="mb-3">
                         <label class="form-label">旅店電話</label>
                         <input class="form-control" value="{{$hotel->phone}}" name="phone" type="text"><br />
-                        <span class="text-danger">@error('address'){{$message}}@enderror</span><br />
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>

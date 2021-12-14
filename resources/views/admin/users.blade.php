@@ -23,7 +23,7 @@
             <td>{{ $u->name }}</td>
             <td>{{ $u->account }}</td>
             <td>{{$u->email}}</td>
-            <td class="lastTD"><label for="" onclick="open_modal('edit_user{{ $u->id }}')">修改</label></td>
+            <td class="lastTD"><button class="crud-btn" for="" onclick="open_modal('edit_user{{ $u->id }}')"><i class="fas fa-pen"></i></button></td>
         </tr>
 
         <div id="edit_user{{ $u->id }}" class="modal">
@@ -67,6 +67,7 @@
     </tbody>
 </table>
 @endsection
+<script src="https://kit.fontawesome.com/8c1847b6ed.js" crossorigin="anonymous"></script>
 <script>
     function open_modal(id) {
         var modal = document.getElementById(id);
@@ -81,6 +82,20 @@
 </script>
 
 <style>
+    .crud-btn {
+        background-color: DodgerBlue;
+        /* Blue background */
+        border: none;
+        /* Remove borders */
+        color: white;
+        /* White text */
+        padding: 12px 16px;
+        /* Some padding */
+        font-size: 16px;
+        /* Set a font size */
+        cursor: pointer;
+        /* Mouse pointer on hover */
+    }
     .modal {
         display: none;
         /* Hidden by default */
