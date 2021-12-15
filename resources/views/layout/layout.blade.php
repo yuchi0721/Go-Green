@@ -82,6 +82,7 @@
 </body>
 
 </html>
+<script src="https://kit.fontawesome.com/8c1847b6ed.js" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
         $(".memberOnly").click(function() {

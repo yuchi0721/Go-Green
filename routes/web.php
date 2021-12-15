@@ -45,6 +45,7 @@ Route::post('/create-store', [Controllers\StoreController::class,'createStore'])
 Route::get('/admin-stores', [Controllers\StoreController::class,'showStores'])->middleware('isLogged');
 Route::delete('/delete-store/{id}', [Controllers\StoreController::class,'deleteStore'])->middleware('isLogged');
 Route::patch('/edit-store/{id}', [Controllers\StoreController::class,'editStore'])->middleware('isLogged');
+Route::post('/create-comment', [Controllers\StoreController::class,'createComment'])->middleware('isLogged');
 
 
 
