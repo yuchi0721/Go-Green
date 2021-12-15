@@ -28,7 +28,7 @@
         @if($user_logged_in)
         <div class="leaveComment">
             <span><i class="fas fa-user"></i><br>{{$user->name}}</span>
-            <form action="/create-comment" id="create_comment" method="POST">
+            <form action="/create-store-comment" id="create_comment" method="POST">
             @csrf
                 <input type="text" style="display: none;" name="user_id" value="{{$user->id}}">
                 <input type="text" style="display: none;" name="store_id" value="{{$store->id}}">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\greenHotel;
+use App\Models\Hotel_comments;
 use Illuminate\Http\Request;
 use App\Models\User;
 class HotelController extends Controller
@@ -100,7 +101,7 @@ class HotelController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
             $comments = \App\Models\Hotel_comments::where('hotel_id', $id)->get();
-            return view('hotel.hotelDetail', ['hotel' => $hotel, 'comments' => $comments,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+            return view('hotel.hotelDetail', ['user'=>$user,'hotel' => $hotel, 'comments' => $comments,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
         return view('hotel.hotelDetail', ['hotel' => $hotel,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
@@ -126,5 +127,22 @@ class HotelController extends Controller
         }
         $hotels = \App\Models\greenHotel::get();
         return view('hotel.hotelAreaview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
+
+    public function createComment(Request $request){
+        $request->validate([
+            'comment'=>'required'
+        ]);
+        $comment = new Hotel_comments;
+        $comment->user_id = $request->user_id;
+        $comment->hotel_id = $request->hotel_id;
+        $comment->comment = $request->comment;
+        $query = $comment->save();
+
+        if ($query) {
+            return back()->with('success', 'You have been successfuly create comment');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
     }
 }
