@@ -127,8 +127,7 @@
         width: 60%;
         /* Could be more or less, depending on screen size */
         border-radius: 15px;
-        height: 50%;
-        text-align: center;
+        text-align: right;
     }
 
     /* table */
@@ -186,7 +185,7 @@
     }
 
     .modal-content input {
-
+        margin-right: 25%;
         width: 400px;
         padding: 10px;
         font-size: 16px;
@@ -205,6 +204,8 @@
         color: #007500;
         background-color: #a9d08d;
         cursor: pointer;
+        margin-right: 40%;
+        margin-bottom: 30px;
     }
 
     .close {
@@ -214,4 +215,5 @@
         display: block;
         width: 30px;
     }
+
 </style>
