@@ -133,4 +133,17 @@ class StoreController extends Controller
             return back()->with('fail', 'something went wrong');
         }
     }
+
+    public function readStore(Request $request){
+        $q = $request->name_query;
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        
+        $stores = greenStore::where('name','like','%'.$q.'%')->get();
+        return view('store.storeOverview', ['stores' => $stores,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
 }
