@@ -42,6 +42,13 @@
             @foreach($comments as $comment)
             <li> <span><i class="fas fa-user"></i><br></span>{{ $comment->user_id }}</li>
             <li class="commentDetail" id="commentDetail">{{ $comment->comment }}</li>
+            @if($isAdmin)
+            <li><button form="delete_hotel_comment_{{$comment->id}}" class="crud-btn"><i class="fas fa-trash"></i></button></li>
+            <form action="/delete-hotel-comment/{{$comment->id}}" method="POST" id="delete_hotel_comment_{{$comment->id}}" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
+            @endif
             <div class="clear"></div>
             @endforeach
 

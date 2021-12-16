@@ -170,4 +170,8 @@ table {
     background-color: #007500;
     padding: 10px 12px;
     font-size: 14px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }

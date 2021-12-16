@@ -36,6 +36,7 @@ Route::get('/admin-hotels', [Controllers\HotelController::class,'showHotels'])->
 Route::delete('/delete-hotel/{id}', [Controllers\HotelController::class,'deleteHotel'])->middleware('isLogged');
 Route::patch('/edit-hotel/{id}', [Controllers\HotelController::class,'editHotel'])->middleware('isLogged');
 Route::post('/create-hotel-comment', [Controllers\HotelController::class,'createComment'])->middleware('isLogged');
+Route::delete('/delete-hotel-comment/{id}', [Controllers\HotelController::class,'deleteComment'])->middleware('isLogged');
 
 Route::get('/', [Controllers\HotelController::class,'about']);
 Route::get('/about', [Controllers\HotelController::class,'about']);
@@ -47,6 +48,7 @@ Route::get('/admin-stores', [Controllers\StoreController::class,'showStores'])->
 Route::delete('/delete-store/{id}', [Controllers\StoreController::class,'deleteStore'])->middleware('isLogged');
 Route::patch('/edit-store/{id}', [Controllers\StoreController::class,'editStore'])->middleware('isLogged');
 Route::post('/create-store-comment', [Controllers\StoreController::class,'createComment'])->middleware('isLogged');
+Route::delete('/delete-store-comment/{id}', [Controllers\StoreController::class,'deleteComment'])->middleware('isLogged');
 
 
 

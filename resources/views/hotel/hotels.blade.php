@@ -138,149 +138,134 @@
 </script>
 
 <style>
-    .crud-btn {
-        background-color: DodgerBlue;
-        /* Blue background */
-        border: none;
-        /* Remove borders */
-        color: white;
-        /* White text */
-        padding: 12px 16px;
-        /* Some padding */
-        font-size: 16px;
-        /* Set a font size */
-        cursor: pointer;
-        /* Mouse pointer on hover */
-    }
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
 
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        overflow: auto;
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
-    }
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            /* Could be more or less, depending on screen size */
+            border-radius: 15px;
+        
+            text-align: right;
+        }
 
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 60%;
-        /* Could be more or less, depending on screen size */
-        border-radius: 15px;
-       
-        text-align: right;
-    }
+        /* table */
+        .usersTable {
+            margin: auto;
+            width: 80%;
+            text-align: center;
+        }
 
-    /* table */
-    .usersTable {
-        margin: auto;
-        width: 80%;
-        text-align: center;
-    }
+        .usersTable tbody {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
 
-    .usersTable tbody {
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+        .usersTable th {
+            padding: 15px 0px;
+            background-color: #a9d08d;
+            border-right: #007500 solid 2px;
+        }
 
-    .usersTable th {
-        padding: 15px 0px;
-        background-color: #a9d08d;
-        border-right: #007500 solid 2px;
-    }
+        .usersTable td {
+            padding: 15px 0px;
+            border-right: 2px #bbb solid;
+        }
 
-    .usersTable td {
-        padding: 15px 0px;
-        border-right: 2px #bbb solid;
-    }
+        .usersTable th.lastTH {
+            border-right: none;
+        }
 
-    .usersTable th.lastTH {
-        border-right: none;
-    }
+        .usersTable tr:nth-child(odd) {
+            background-color: rgb(230, 230, 230);
+        }
 
-    .usersTable tr:nth-child(odd) {
-        background-color: rgb(230, 230, 230);
-    }
+        .usersTable tr:nth-child(even) {
+            background-color: rgb(246, 246, 246);
+        }
 
-    .usersTable tr:nth-child(even) {
-        background-color: rgb(246, 246, 246);
-    }
+        .usersTable tr:hover {
+            background-color: rgb(222, 222, 222);
+        }
 
-    .usersTable tr:hover {
-        background-color: rgb(222, 222, 222);
-    }
+        .usersTable td.lastTD {
+            border-right: none;
+            cursor: pointer;
+            display: block;
+        }
 
-    .usersTable td.lastTD {
-        border-right: none;
-        cursor: pointer;
-        display: block;
-    }
+        .usersTable td.lastTD label {
+            cursor: pointer;
+        }
 
-    .usersTable td.lastTD label {
-        cursor: pointer;
-    }
+        /* modidy */
+        .modal-content label {
+            font-size: 16px;
+        }
 
-    /* modidy */
-    .modal-content label {
-        font-size: 16px;
-    }
+        .modal-content input {
+            margin-right: 25%;
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: #a9d08d solid 2px;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
 
-    .modal-content input {
-        margin-right: 25%;
-        width: 400px;
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: #a9d08d solid 2px;
-        margin-top: 10px;
-        margin-bottom: 25px;
-    }
+        .modal-content textarea {
+            margin-right: 25%;
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: #a9d08d solid 2px;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
 
-    .modal-content textarea {
-        margin-right: 25%;
-        width: 400px;
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: #a9d08d solid 2px;
-        margin-top: 10px;
-        margin-bottom: 25px;
-    }
+        #submit {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: #a9d08d solid 2px;
+            width: 200px;
+            color: #007500;
+            background-color: #a9d08d;
+            cursor: pointer;
+            margin-right: 40%;
+            margin-bottom: 30px;
+        }
 
-    #submit {
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: #a9d08d solid 2px;
-        width: 200px;
-        color: #007500;
-        background-color: #a9d08d;
-        cursor: pointer;
-        margin-right: 40%;
-        margin-bottom: 30px;
-    }
-
-    .close {
-        text-align: left;
-        font-size: 24px;
-        cursor: pointer;
+        .close {
+            text-align: left;
+            font-size: 24px;
+            cursor: pointer;
         display: block;
         width: 30px;
     }

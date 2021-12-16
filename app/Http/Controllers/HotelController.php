@@ -145,4 +145,14 @@ class HotelController extends Controller
             return back()->with('fail', 'something went wrong');
         }
     }
+
+    public function deleteComment($id){
+        $comment = Hotel_comments::find($id);
+        $comment->delete();
+        if ($comment) {
+            return back()->with('success', 'You have been successfuly delete comment');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
 }

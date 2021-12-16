@@ -29,20 +29,27 @@
         <div class="leaveComment">
             <span><i class="fas fa-user"></i><br>{{$user->name}}</span>
             <form action="/create-store-comment" id="create_comment" method="POST">
-            @csrf
+                @csrf
                 <input type="text" style="display: none;" name="user_id" value="{{$user->id}}">
                 <input type="text" style="display: none;" name="store_id" value="{{$store->id}}">
                 <textarea style="resize: none;" type="text" name="comment" placeholder="留下評論吧！" require></textarea>
                 <input type="submit" id="submit">
             </form>
             <div class="clear"></div>
-            
+
             <div class="clear"></div>
         </div>
         <ul>
             @foreach($comments as $comment)
             <li><span><i class="fas fa-user"></i><br></span>{{ $comment->user_id }}</li>
             <li class="commentDetail" id="commentDetail">{{ $comment->comment }}</li>
+            @if($isAdmin)
+            <li><button form="delete_store_comment_{{$comment->id}}" class="crud-btn"><i class="fas fa-trash"></i></button></li>
+            <form action="/delete-store-comment/{{$comment->id}}" method="POST" id="delete_store_comment_{{$comment->id}}" style="display: none;">
+                @csrf
+                @method('delete')
+            </form>
+            @endif
             <div class="clear"></div>
             @endforeach
 

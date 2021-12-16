@@ -59,7 +59,7 @@
                         @if($user_logged_in)
                         <li id="memberInfoModify"><a href="/profile">會員資料修改</a></li>
                         @if($isAdmin==true)
-                        <li><a href="users">會員管理</a></li>
+                        <li><a href="/users">會員管理</a></li>
                         @endif
                         @else
                         <li id="memberInfoModify"><a href="/login">會員資料修改</a></li>
