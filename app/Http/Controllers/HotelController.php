@@ -129,6 +129,19 @@ class HotelController extends Controller
         return view('hotel.hotelAreaview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
+    public function findHotel($area){
+        $q = $area;
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        
+        $hotels = greenHotel::where('address','like','%'.$q.'%')->get();
+        return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
+
     public function createComment(Request $request){
         $request->validate([
             'comment'=>'required'
