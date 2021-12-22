@@ -8,7 +8,7 @@
 
 @section('contents')
 <div class="search">
-    <form action="/hotels/search" method="POST">@csrf<input type="text" name="name_query"><button class="crud-btn"><i class="fas fa-search"></i></button></form>
+    <form action="/hotels/search" method="POST">@csrf<input id="searchInput" type="text" name="name_query"><button class="crud-btn"><i class="fas fa-search"></i></button></form>
 
 </div>
 <div class="clear"></div>
@@ -35,12 +35,21 @@
     .search {
         float: right;
         margin-right: 80px;
-        width: 400px;
+        width: 300px;
         height: 40px;
-        border: #a9d08d solid 3px;
-        border-radius: 10px;
-    }
 
+    }
+    #searchInput{
+        width: 250px;
+        padding:7px;
+        font-size:18px;
+        border-radius: 10px;
+        border: #a9d08d solid 3px;
+    }
+    .search button{
+        position: relative;
+        right:43;
+    }
     .hotel {
         float: left;
         margin-left: 50px;
@@ -57,6 +66,8 @@
         /* border: #a9d08d solid 2px; */
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
         transition: box-shadow 0.3s ease-in-out;
+        line-height: 24px;
+        height:233px;
     }
 
     .hotelInfo:hover {

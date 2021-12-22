@@ -167,6 +167,7 @@ table {
 
 /* icon */
 .crud-btn{
+    border-radius: 7px;
     background-color: #007500;
     padding: 10px 12px;
     font-size: 14px;
