@@ -30,6 +30,7 @@
             <span><i class="fas fa-user"></i><br>{{$user->name}}</span>
             <form action="/create-hotel-comment" id="create_hotel_comment" method="POST">
                 @csrf
+                <div class="text-danger">@error('comment'){{$message}}@enderror</div><br />
                 <input type="text" style="display: none;" name="user_id" value="{{$user->id}}">
                 <input type="text" style="display: none;" name="hotel_id" value="{{$hotel->id}}">
                 <textarea style="resize: none;" type="text" name="comment" placeholder="留下評論吧！" require></textarea>

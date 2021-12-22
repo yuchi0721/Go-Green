@@ -175,3 +175,7 @@ table {
     font-size: 16px;
     cursor: pointer;
 }
+/* error message */
+.text-danger{
+    color: red;
+}

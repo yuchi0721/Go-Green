@@ -30,6 +30,7 @@
             <span><i class="fas fa-user"></i><br>{{$user->name}}</span>
             <form action="/create-store-comment" id="create_comment" method="POST">
                 @csrf
+                <div class="text-danger">@error('comment'){{$message}}@enderror</div><br />
                 <input type="text" style="display: none;" name="user_id" value="{{$user->id}}">
                 <input type="text" style="display: none;" name="store_id" value="{{$store->id}}">
                 <textarea style="resize: none;" type="text" name="comment" placeholder="留下評論吧！" require></textarea>
