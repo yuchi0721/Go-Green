@@ -27,7 +27,7 @@
         <h2 class="comment">顧客評論</h2>
         @if($user_logged_in)
         <div class="leaveComment">
-            <span><i class="fas fa-user"></i><br>{{$user->name}}</span>
+            <span class="userIcon"><i class="fas fa-user"></i><br>{{$user->name}}</span>
             <form action="/create-store-comment" id="create_comment" method="POST">
                 @csrf
                 <div class="text-danger">@error('comment'){{$message}}@enderror</div><br />
@@ -35,15 +35,17 @@
                 <input type="text" style="display: none;" name="store_id" value="{{$store->id}}">
                 <textarea style="resize: none;" type="text" name="comment" placeholder="留下評論吧！" require></textarea>
                 <input type="submit" id="submit">
+                <div class="clear"></div>  
             </form>
             <div class="clear"></div>
 
             <div class="clear"></div>
         </div>
+
         <ul>
             @foreach($comments as $comment)
-            <li><span><i class="fas fa-user"></i><br></span>{{ $comment->user_id }}</li>
-            <li class="commentDetail" id="commentDetail">{{ $comment->comment }}</li>
+            <li class="userIcon"><span><i class="fas fa-user"></i><br></span>{{ $comment->user_id }}</li>
+            <li class="commentDetail" ><textarea disabled>{{ $comment->comment }}</textarea></li>
             @if($isAdmin)
             <li><button form="delete_store_comment_{{$comment->id}}" class="crud-btn"><i class="fas fa-trash"></i></button></li>
             <form action="/delete-store-comment/{{$comment->id}}" method="POST" id="delete_store_comment_{{$comment->id}}" style="display: none;">
@@ -56,6 +58,8 @@
 
             <div class="clear"></div>
         </ul>
+
+        
         <div class="clear"></div>
         @else
         <h2>您必須登入來觀看留言</h2>
@@ -107,8 +111,9 @@
         font-size: 18px;
     }
 
-    #commentDetail {
-        text-align: left;
+    .store_comments li button{
+        margin-left:20px;
+        margin-top:5px;
     }
 
     .comment {
@@ -125,13 +130,22 @@
     .commentDetail {
         border-radius: 5px;
         text-align: left;
-        padding: 15px;
+        padding: 4px;
         width: 80%;
         margin-left: 20px;
         margin-bottom: 15px;
         border: #a9d08d solid 2px;
     }
-
+    .commentDetail textarea{
+        border:none;
+        resize:none;
+        width: 100%;
+        height:55px;
+        font-size: 18px;
+    }
+    .userIcon{
+        margin-top:10px;
+    }
     .leaveComment {
         text-align: center;
         margin-bottom: 20px;
