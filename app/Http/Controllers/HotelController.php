@@ -5,6 +5,7 @@ use App\Models\greenHotel;
 use App\Models\Hotel_comments;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class HotelController extends Controller
 {
     public function about(){
@@ -114,7 +115,7 @@ class HotelController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        $hotels = \App\Models\greenHotel::get();
+        $hotels = greenHotel::paginate(15);
         return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
     public function hotelAreaview()

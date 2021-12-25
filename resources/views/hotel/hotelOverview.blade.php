@@ -27,7 +27,7 @@
     @endforeach
 </div>
 <div class="clear"></div>
-
+<?php echo $hotels->render(); ?>
 @endsection
 
 

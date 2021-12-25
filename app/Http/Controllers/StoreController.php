@@ -103,7 +103,7 @@ class StoreController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        $stores = \App\Models\greenstore::get();
+        $stores = greenstore::paginate(15);
         return view('store.storeOverview',['stores' => $stores,'isAdmin' => $isAdmin,'user_logged_in' => $user_logged_in]);
     }
 

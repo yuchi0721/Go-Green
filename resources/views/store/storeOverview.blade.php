@@ -25,7 +25,7 @@
     @endforeach
 </div>
 <div class="clear"></div>
-
+<?php echo $stores->render(); ?>
 @endsection
 
 
