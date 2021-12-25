@@ -114,7 +114,7 @@ class StoreController extends Controller
     public function createComment(Request $request)
     {
         $request->validate([
-            'comment' => 'required|max:100'
+            'comment' => 'required|max:255'
         ]);
         $comment = new Store_comments;
         $comment->user_id = $request->user_id;
