@@ -20,7 +20,7 @@
         <div class="header">
             <img class="icon" src="{{ asset ('icons/logo.png')}}" alt="">
             <h1 class="title">Go Green</h1>
-            @if($user_logged_in)
+            @if($user_logged_in)    
             <button class="login"><a href="/logout">Log out</a></button>
             @else
             <button class="login"><a href="/login">Log in</a></button>
@@ -59,7 +59,7 @@
                         @if($user_logged_in)
                         <li id="memberInfoModify"><a href="/profile">會員資料修改</a></li>
                         @if($isAdmin==true)
-                        <li><a href="users">會員管理</a></li>
+                        <li><a href="/users">會員管理</a></li>
                         @endif
                         @else
                         <li id="memberInfoModify"><a href="/login">會員資料修改</a></li>

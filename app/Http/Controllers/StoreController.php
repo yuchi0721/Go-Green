@@ -103,13 +103,13 @@ class StoreController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        $stores = \App\Models\greenstore::get();
+        $stores = greenstore::paginate(15);
         return view('store.storeOverview',['stores' => $stores,'isAdmin' => $isAdmin,'user_logged_in' => $user_logged_in]);
     }
 
     public function createComment(Request $request){
         $request->validate([
-            'comment'=>'required'
+            'comment'=>'required|max:100'
         ]);
         $comment = new Store_comments;
         $comment->user_id = $request->user_id;
@@ -122,5 +122,28 @@ class StoreController extends Controller
         } else {
             return back()->with('fail', 'something went wrong');
         }
+    }
+
+    public function deleteComment($id){
+        $comment = Store_comments::find($id);
+        $comment->delete();
+        if ($comment) {
+            return back()->with('success', 'You have been successfuly delete comment');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
+
+    public function readStore(Request $request){
+        $q = $request->name_query;
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        
+        $stores = greenStore::where('name','like','%'.$q.'%')->get();
+        return view('store.storeOverview', ['stores' => $stores,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 }

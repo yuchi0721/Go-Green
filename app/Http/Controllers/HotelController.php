@@ -5,6 +5,7 @@ use App\Models\greenHotel;
 use App\Models\Hotel_comments;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class HotelController extends Controller
 {
     public function about(){
@@ -114,7 +115,7 @@ class HotelController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        $hotels = \App\Models\greenHotel::get();
+        $hotels = greenHotel::paginate(15);
         return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
     public function hotelAreaview()
@@ -129,9 +130,22 @@ class HotelController extends Controller
         return view('hotel.hotelAreaview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
+    public function findHotel($area){
+        $q = $area;
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        
+        $hotels = greenHotel::where('address','like','%'.$q.'%')->get();
+        return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
+
     public function createComment(Request $request){
         $request->validate([
-            'comment'=>'required'
+            'comment'=>'required|max:100'
         ]);
         $comment = new Hotel_comments;
         $comment->user_id = $request->user_id;
@@ -144,5 +158,28 @@ class HotelController extends Controller
         } else {
             return back()->with('fail', 'something went wrong');
         }
+    }
+
+    public function deleteComment($id){
+        $comment = Hotel_comments::find($id);
+        $comment->delete();
+        if ($comment) {
+            return back()->with('success', 'You have been successfuly delete comment');
+        } else {
+            return back()->with('fail', 'something went wrong');
+        }
+    }
+
+    public function readHotel(Request $request){
+        $q = $request->name_query;
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        
+        $hotels = greenHotel::where('name','like','%'.$q.'%')->get();
+        return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 }
