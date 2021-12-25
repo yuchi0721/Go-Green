@@ -14,7 +14,11 @@
 <div class="region">
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-    
+    <div class="swiper-slide" onclick="reDirect('澎湖')">
+        <img src="https://zh-tw.skyticket.com/guide/wp-content/uploads/2020/12/shutterstock_1086233933.jpg" alt="">
+        <div class="regionInfo">澎湖</div>
+        <div class="clear"></div>
+      </div>
       <div class="swiper-slide" onclick="reDirect('台北')">
         <img src="https://a.cdn-hotels.com/gdcs/production57/d1344/58e63eaa-73ec-48f3-828a-c287ee898ac3.jpg" alt="">
         <div class="regionInfo">台北</div>
@@ -49,7 +53,7 @@
 
 <script>
   function reDirect(area){
-    let link_address = `/hotel-areaview/${area}`
+    let link_address = `/store-areaview/${area}`
     location.replace(link_address)
   }
   var swiper = new Swiper(".mySwiper", {

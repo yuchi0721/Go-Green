@@ -44,6 +44,8 @@ Route::get('/', [Controllers\HotelController::class,'about']);
 Route::get('/about', [Controllers\HotelController::class,'about']);
 
 Route::get('/stores', [Controllers\StoreController::class,'storeOverview']);
+Route::get('/store-areaview', [Controllers\StoreController::class,'storeAreaview']);
+Route::get('/store-areaview/{area}', [Controllers\StoreController::class,'findStore']);
 Route::post('/create-store', [Controllers\StoreController::class,'createStore'])->middleware('isLogged');
 Route::get('/admin-stores', [Controllers\StoreController::class,'showStores'])->middleware('isLogged');
 Route::delete('/delete-store/{id}', [Controllers\StoreController::class,'deleteStore'])->middleware('isLogged');

@@ -10,7 +10,7 @@
 <div class="hotel">
     <div class="hotel_info">
         <span class="hotelImg">
-            <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+            <img src="https://upload.cc/i1/2021/12/25/SvbNOX.png" alt="">
         </span>
         <span class="introduction">
             <ul>
@@ -58,7 +58,7 @@
         </ul>
         <div class="clear"></div>
         @else
-        <h2>您需要登入來觀看留言</h2>
+        <h2 class="warning"><img src="{{ asset ('icons/warning.png')}}" width="25" alt="">&nbsp;&nbsp;您需要登入來觀看留言</h2>
         @endif
     </div>
 </div>
@@ -80,7 +80,8 @@
     }
 
     .hotelImg img {
-        width: 500px;
+        width: 330px;
+        margin-left:140px;
     }
 
     .introduction li {
@@ -179,5 +180,10 @@
     #info {
         width: 400px;
         margin-top: 30px;
+    }
+    .warning{
+        text-align:center;
+        color:red;
+        font-size:20px;
     }
 </style>

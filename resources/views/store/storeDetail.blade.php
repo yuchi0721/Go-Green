@@ -62,7 +62,7 @@
         
         <div class="clear"></div>
         @else
-        <h2>您必須登入來觀看留言</h2>
+        <h2 class="warning"><img src="{{ asset ('icons/warning.png')}}" width="25" alt="">&nbsp;&nbsp;您需要登入來觀看留言</h2>
         @endif
     </div>
 </div>
@@ -84,7 +84,8 @@
     }
 
     .storeImg img {
-        width: 500px;
+        width: 330px;
+        margin-left:140px;
     }
 
     .introduction li {
@@ -177,5 +178,10 @@
         margin-right: 100px;
         border: #a9d08d solid 2px;
         border-radius: 7px;
+    }
+    .warning{
+        text-align:center;
+        color:red;
+        font-size:20px;
     }
 </style>

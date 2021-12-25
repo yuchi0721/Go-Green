@@ -71,6 +71,7 @@
         /* border: #a9d08d solid 2px; */
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
         transition: box-shadow 0.3s ease-in-out;
+        height: 225px;
     }
 
     .storeInfo img {

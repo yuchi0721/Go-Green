@@ -111,6 +111,31 @@ class StoreController extends Controller
         return view('store.storeOverview', ['stores' => $stores, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
+    public function storeAreaview()
+    {   
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        $stores = \App\Models\greenstore::get();
+        return view('store.storeAreaview', ['stores' => $stores,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
+
+    public function findStore($area){
+        $q = $area;
+        $user_logged_in=$isAdmin = false;
+        if (session()->has('LoggedUser')) {
+            $user = User::where('id', '=', session('LoggedUser'))->first();
+            $isAdmin = $user->admin;
+            $user_logged_in = true;
+        }
+        
+        $stores = greenstore::where('address','like','%'.$q.'%')->paginate(15);
+        return view('store.storeOverview', ['stores' => $stores,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+    }
+
     public function createComment(Request $request)
     {
         $request->validate([

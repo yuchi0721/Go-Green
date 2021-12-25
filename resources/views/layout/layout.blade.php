@@ -37,7 +37,7 @@
                     <li class="greenShop">綠色商店 <img id="greenShopArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
                     <div class="reviewShop subList">
                         <li><a href="/stores">商店總覽</a></li>
-                        <li><a>區域瀏覽</a></li>
+                        <li><a href="/store-areaview">區域瀏覽</a></li>
                         @if($user_logged_in)
                         @if($isAdmin==true)
                         <li><a href="/admin-stores">編輯商店</a></li>
