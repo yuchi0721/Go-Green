@@ -135,6 +135,7 @@ table {
     padding-top: 10px;
     padding-left: 30px;
     width:75%;
+    padding-bottom: 80px;
 }
 .member{
     display:none;
@@ -181,6 +182,32 @@ table {
     color: white;
     font-size: 16px;
     cursor: pointer;
+}
+.w-5{
+    width:30px;
+    position: relative;
+    top:7;
+}
+
+.flex-1 {
+    visibility: hidden;
+}
+.hidden p{
+    visibility: hidden;
+}
+.shadow-sm a{
+    text-decoration:none;
+    margin:5px;
+    font-size:20px;
+    color: rgb(123, 190, 75);
+}
+.shadow-sm span{
+    margin:5px;
+    font-size:20px;
+    color: #007500;
+}
+.shadow-sm{
+    margin-left: 350px;
 }
 /* error message */
 .text-danger{
