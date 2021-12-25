@@ -22,10 +22,11 @@
             <h1 class="title"><a href="/about">Go Green</a></h1>
             @if($user_logged_in)    
             <button class="login"><a href="/logout">Log out</a></button>
+            <p class="slogan">Hello！ {{$user->name}}</p>
             @else
             <button class="login"><a href="/login">Log in</a></button>
-            @endif
             <p class="slogan">Hello！ Customer</p>
+            @endif
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
