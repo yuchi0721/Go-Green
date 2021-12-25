@@ -62,7 +62,7 @@
 
     .storeInfo {
         border-radius: 10px;
-        width: 220px;
+        width: 200px;
         margin-left: 50px;
         margin-top: 20px;
         padding: 20px;
@@ -74,8 +74,9 @@
     }
 
     .storeInfo img {
-        width: 200px;
-        margin-bottom: 15px;
+        margin-left:30px;
+        width: 140px;
+        margin-bottom: 10px;
     }
 
     .storeInfo .detail {
