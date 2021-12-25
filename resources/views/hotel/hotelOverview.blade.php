@@ -16,7 +16,7 @@
 <div class="hotel">
     @foreach ($hotels as $hotel)
     <div class="hotelInfo">
-        <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+        <img src="https://upload.cc/i1/2021/12/25/SvbNOX.png" alt="">
         <div class="clear"></div>
         <div>
             <label>{{ $hotel->name }}</label>

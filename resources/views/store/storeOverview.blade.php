@@ -17,7 +17,8 @@
 <div class="store">
     @foreach ($stores as $store)
     <div class="storeInfo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/7-eleven_logo.svg/255px-7-eleven_logo.svg.png" alt="">
+        <img src="https://upload.cc/i1/2021/12/25/cePUns.png
+" alt="">
         <div>
             <label>{{ $store->name }}</label>
         </div>
