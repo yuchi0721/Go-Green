@@ -29,7 +29,6 @@ Route::get('/users', [Controllers\UserController::class,'showUser'])->middleware
 Route::post('/users/{id}', [Controllers\UserController::class,'adminUpdateUser']);
 
 Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
-Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
 Route::get('/hotel-areaview', [Controllers\HotelController::class,'hotelAreaview']);
 Route::get('/hotel-areaview/{area}', [Controllers\HotelController::class,'findHotel']);
 Route::post('/create-hotel', [Controllers\HotelController::class,'createHotel'])->middleware('isLogged');
@@ -38,20 +37,21 @@ Route::delete('/delete-hotel/{id}', [Controllers\HotelController::class,'deleteH
 Route::patch('/edit-hotel/{id}', [Controllers\HotelController::class,'editHotel'])->middleware('isLogged');
 Route::post('/create-hotel-comment', [Controllers\HotelController::class,'createComment'])->middleware('isLogged');
 Route::delete('/delete-hotel-comment/{id}', [Controllers\HotelController::class,'deleteComment'])->middleware('isLogged');
-Route::post('/hotels/search', [Controllers\HotelController::class,'readHotel']);
+Route::get('/hotels/search', [Controllers\HotelController::class,'readHotel']);
+Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
 
 Route::get('/', [Controllers\HotelController::class,'about']);
 Route::get('/about', [Controllers\HotelController::class,'about']);
 
 Route::get('/stores', [Controllers\StoreController::class,'storeOverview']);
-Route::get('/stores/{id}', [Controllers\StoreController::class,'storeDetail']);
 Route::post('/create-store', [Controllers\StoreController::class,'createStore'])->middleware('isLogged');
 Route::get('/admin-stores', [Controllers\StoreController::class,'showStores'])->middleware('isLogged');
 Route::delete('/delete-store/{id}', [Controllers\StoreController::class,'deleteStore'])->middleware('isLogged');
 Route::patch('/edit-store/{id}', [Controllers\StoreController::class,'editStore'])->middleware('isLogged');
 Route::post('/create-store-comment', [Controllers\StoreController::class,'createComment'])->middleware('isLogged');
 Route::delete('/delete-store-comment/{id}', [Controllers\StoreController::class,'deleteComment'])->middleware('isLogged');
-Route::post('/stores/search', [Controllers\StoreController::class,'readStore']);
+Route::get('/stores/search', [Controllers\StoreController::class,'readStore']);
+Route::get('/stores/{id}', [Controllers\StoreController::class,'storeDetail']);
 
 
 

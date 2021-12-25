@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\greenStore;
 use App\Models\Store_comments;
+
 class StoreController extends Controller
 {
     public function createStore(Request $request)
@@ -31,9 +32,10 @@ class StoreController extends Controller
             return back()->with('fail', 'something went wrong');
         }
     }
-    
-    public function deleteStore($id){
-        $store = greenStore::find($id); 
+
+    public function deleteStore($id)
+    {
+        $store = greenStore::find($id);
         $store->delete();
         if ($store) {
             return back()->with('success', 'You have been successfuly create store');
@@ -42,7 +44,7 @@ class StoreController extends Controller
         }
     }
 
-    public function editStore(Request $request,$id)
+    public function editStore(Request $request, $id)
     {
         // validate user input is correct
         $request->validate([
@@ -51,7 +53,7 @@ class StoreController extends Controller
         ]);
 
         //new a User model and save into it
-        $store = greenStore::where('id',$id)->update([
+        $store = greenStore::where('id', $id)->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->phone,
@@ -66,7 +68,8 @@ class StoreController extends Controller
         }
     }
 
-    public function showStores(){
+    public function showStores()
+    {
         $stores = greenStore::get();
         $user_logged_in = $isAdmin  = false;
         if (session()->has('LoggedUser')) {
@@ -79,37 +82,39 @@ class StoreController extends Controller
             return view('store.stores', ['stores' => $stores, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
 
-        return view('store.storeOverview', ['stores' => $stores,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
-
+        return view('store.storeOverview', ['stores' => $stores, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
-    public function storeDetail($id){
+    public function storeDetail($id)
+    {
         $store = greenStore::find($id);
-        $user_logged_in= $isAdmin = false;
+        $user_logged_in = $isAdmin = false;
         if (session()->has('LoggedUser')) {
             $user = User::where('id', '=', session('LoggedUser'))->first();
             $isAdmin = $user->admin;
             $user_logged_in = true;
             $comments = \App\Models\store_comments::where('store_id', $id)->get();
-            return view('store.storeDetail',[ 'user'=>$user,'store' => $store,'comments'=>$comments,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+            return view('store.storeDetail', ['user' => $user, 'store' => $store, 'comments' => $comments, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
-        return view('store.storeDetail',['store' => $store,'isAdmin' => $isAdmin,'user_logged_in' => $user_logged_in]);
+        return view('store.storeDetail', ['store' => $store, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
 
-    public function storeOverview(){
-        $user_logged_in= $isAdmin = false;
+    public function storeOverview()
+    {
+        $user_logged_in = $isAdmin = false;
         if (session()->has('LoggedUser')) {
             $user = User::where('id', '=', session('LoggedUser'))->first();
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
         $stores = greenstore::paginate(15);
-        return view('store.storeOverview',['stores' => $stores,'isAdmin' => $isAdmin,'user_logged_in' => $user_logged_in]);
+        return view('store.storeOverview', ['stores' => $stores, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
-    public function createComment(Request $request){
+    public function createComment(Request $request)
+    {
         $request->validate([
-            'comment'=>'required|max:100'
+            'comment' => 'required|max:100'
         ]);
         $comment = new Store_comments;
         $comment->user_id = $request->user_id;
@@ -124,7 +129,8 @@ class StoreController extends Controller
         }
     }
 
-    public function deleteComment($id){
+    public function deleteComment($id)
+    {
         $comment = Store_comments::find($id);
         $comment->delete();
         if ($comment) {
@@ -134,16 +140,19 @@ class StoreController extends Controller
         }
     }
 
-    public function readStore(Request $request){
+    public function readStore(Request $request)
+    {
         $q = $request->name_query;
-        $user_logged_in=$isAdmin = false;
+        $user_logged_in = $isAdmin = false;
         if (session()->has('LoggedUser')) {
             $user = User::where('id', '=', session('LoggedUser'))->first();
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        
-        $stores = greenStore::where('name','like','%'.$q.'%')->get();
-        return view('store.storeOverview', ['stores' => $stores,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        $stores = greenStore::paginate(15);
+        if (request('name_query')) {
+            $stores = greenStore::where('name', 'like', '%' . $q . '%')->paginate(15);
+        }
+        return view('store.storeOverview', ['stores' => $stores, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 }
