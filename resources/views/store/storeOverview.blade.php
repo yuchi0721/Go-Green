@@ -8,7 +8,10 @@
 
 @section('contents')
 <div class="search">
-    <form action="/stores/search" method="POST">@csrf<input id="searchInput" type="text" name="name_query"><button class="crud-btn"><i class="fas fa-search"></i></button></form>
+    <form action="/stores/search" method="GET" role="search">
+        <input id="searchInput" type="text" name="name_query">
+        <button class="crud-btn" type="submit"><i class="fas fa-search"></i></button>
+    </form>
 </div>
 <div class="clear"></div>
 <div class="store">
@@ -30,24 +33,27 @@
 
 
 <style>
-.search {
+    .search {
         float: right;
         margin-right: 80px;
         width: 300px;
         height: 40px;
 
     }
-    #searchInput{
+
+    #searchInput {
         width: 250px;
-        padding:7px;
-        font-size:18px;
+        padding: 7px;
+        font-size: 18px;
         border-radius: 10px;
         border: #a9d08d solid 3px;
     }
-    .search button{
+
+    .search button {
         position: relative;
-        right:43;
+        right: 43;
     }
+
     .store {
         float: left;
         margin-left: 50px;

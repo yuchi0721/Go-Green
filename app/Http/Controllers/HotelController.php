@@ -139,13 +139,13 @@ class HotelController extends Controller
             $user_logged_in = true;
         }
         
-        $hotels = greenHotel::where('address','like','%'.$q.'%')->get();
+        $hotels = greenHotel::where('address','like','%'.$q.'%')->paginate(15);
         return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function createComment(Request $request){
         $request->validate([
-            'comment'=>'required|max:100'
+            'comment'=>'required|max:255'
         ]);
         $comment = new Hotel_comments;
         $comment->user_id = $request->user_id;
@@ -178,8 +178,11 @@ class HotelController extends Controller
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
-        
-        $hotels = greenHotel::where('name','like','%'.$q.'%')->get();
+        $hotels  = greenHotel::paginate(15);
+        if (request('name_query')){
+            $hotels = greenHotel::where('name','like','%'.$q.'%')->paginate(15);
+        }
+
         return view('hotel.hotelOverview', ['hotels' => $hotels,'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 }

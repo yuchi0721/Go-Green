@@ -19,7 +19,7 @@
     <div class="wrap">
         <div class="header">
             <img class="icon" src="{{ asset ('icons/logo.png')}}" alt="">
-            <h1 class="title">Go Green</h1>
+            <h1 class="title"><a href="/about">Go Green</a></h1>
             @if($user_logged_in)    
             <button class="login"><a href="/logout">Log out</a></button>
             @else
