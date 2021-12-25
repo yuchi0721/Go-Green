@@ -15,27 +15,27 @@
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide" onclick="reDirect('台北')">
-        <img src="https://www.hafh.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fhafh-prod-property_image%2Fqs5zw26kxwu3a3fbpfo8ge7c9xtt&w=640&q=75" alt="">
+        <img src="https://a.cdn-hotels.com/gdcs/production57/d1344/58e63eaa-73ec-48f3-828a-c287ee898ac3.jpg" alt="">
         <div class="regionInfo">台北</div>
         <div class="clear"></div>
       </div>
       <div class="swiper-slide" onclick="reDirect('花蓮')">
-        <img src="https://www.hafh.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fhafh-prod-property_image%2Fg8vxfh48j1e88bbc3p4w94pqrj47&w=640&q=75" alt="">
+        <img src="https://www.hotelscombined.com.tw/news/wp-content/uploads/sites/316/2019/02/f2.jpg" alt="">
         <div class="regionInfo">花蓮</div>
         <div class="clear"></div>
       </div>
       <div class="swiper-slide" onclick="reDirect('台中')">
-        <img src="https://www.hafh.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fhafh-prod-property_image%2Fvfnqabq1wwfpkoofekq1x7jelki7&w=640&q=75" alt="">
+        <img src="https://s.yimg.com/ny/api/res/1.2/zME_O0J7RjbxuPcOFweMZw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://s.yimg.com/uu/api/res/1.2/tmQ_VfTvfCkrJGwoZCIpOA--~B/aD04MDA7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/ko/nownews.com/be50a3c9d8b903ea7734ccdc64f83f90" alt="">
         <div class="regionInfo">台中</div>
         <div class="clear"></div>
       </div>
       <div class="swiper-slide" onclick="reDirect('台南')">
-        <img src="https://www.hafh.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fhafh-prod-property_image%2Fjl16a112tgazp5uakz61lxq4ter4&w=640&q=75" alt="">
+        <img src="https://cc.tvbs.com.tw/img/program/upload/2021/11/08/20211108152948-98b983f6.jpg" alt="">
         <div class="regionInfo">台南</div>
         <div class="clear"></div>
       </div>
       <div class="swiper-slide" onclick="reDirect('高雄')">
-        <img src="https://www.hafh.com/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Fhafh-prod-property_image%2Fqs5zw26kxwu3a3fbpfo8ge7c9xtt&w=640&q=75" alt="">
+        <img src="https://tenjo.tw/wp-content/uploads/20210220184733_68.jpg" alt="">
         <div class="regionInfo">高雄</div>
         <div class="clear"></div>
       </div>
