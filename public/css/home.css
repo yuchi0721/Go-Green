@@ -65,6 +65,10 @@ table {
     margin-top:40px;
     margin-left:30px;
 }
+.title a{
+    text-decoration: none;
+    color: white;
+}
 .login a{
     text-decoration: none;
     color: white;

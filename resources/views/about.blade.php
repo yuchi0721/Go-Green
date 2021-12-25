@@ -29,7 +29,7 @@
         <img src="{{ asset ('icons/about_1.png')}}" alt="">
         <div class="clear"></div>
             <a href="/hotels">綠色旅店</a>
-            <a href="">綠色商店</a>
+            <a href="/stores">綠色商店</a>
 
         <div class="clear"></div>
     </div>
