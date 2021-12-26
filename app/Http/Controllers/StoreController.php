@@ -13,8 +13,10 @@ class StoreController extends Controller
     {
         // validate user input is correct
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255',
             'address' => 'required',
+            'intro'=>'max:255',
+            'phone' =>'digits:10',
         ]);
 
         //new a User model and save into it
@@ -48,8 +50,10 @@ class StoreController extends Controller
     {
         // validate user input is correct
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255',
             'address' => 'required',
+            'intro'=>'max:255',
+            'phone' =>'digits:10',
         ]);
 
         //new a User model and save into it
