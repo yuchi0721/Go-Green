@@ -29,7 +29,7 @@ Route::get('/users', [Controllers\UserController::class,'showUser'])->middleware
 Route::post('/users/{id}', [Controllers\UserController::class,'adminUpdateUser']);
 
 
-Route::get('/', [Controllers\HotelController::class,'hotels']);
+Route::get('/', [Controllers\HotelController::class,'hotelOverview']);
 Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
 Route::get('/hotel-areaview', [Controllers\HotelController::class,'hotelAreaview']);
 Route::get('/hotel-areaview/{area}', [Controllers\HotelController::class,'findHotel']);
