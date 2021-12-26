@@ -28,6 +28,8 @@ Route::post('/reset-password/{id}',[Controllers\UserController::class,'resetUser
 Route::get('/users', [Controllers\UserController::class,'showUser'])->middleware('isLogged');
 Route::post('/users/{id}', [Controllers\UserController::class,'adminUpdateUser']);
 
+
+Route::get('/', [Controllers\HotelController::class,'hotels']);
 Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
 Route::get('/hotel-areaview', [Controllers\HotelController::class,'hotelAreaview']);
 Route::get('/hotel-areaview/{area}', [Controllers\HotelController::class,'findHotel']);
@@ -40,7 +42,6 @@ Route::delete('/delete-hotel-comment/{id}', [Controllers\HotelController::class,
 Route::get('/hotels/search', [Controllers\HotelController::class,'readHotel']);
 Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
 
-Route::get('/', [Controllers\HotelController::class,'about']);
 Route::get('/about', [Controllers\HotelController::class,'about']);
 
 Route::get('/stores', [Controllers\StoreController::class,'storeOverview']);

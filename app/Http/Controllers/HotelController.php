@@ -25,10 +25,10 @@ class HotelController extends Controller
     {
         // validate user input is correct
         $request->validate([
-            'name' => 'required|max:255',
-            'address' => 'required',
+            'name' => 'required|max:30',
+            'address' => 'required|max:50',
             'intro'=>'max:255',
-            'phone' =>'digits:10',
+            'phone' =>'max:20',
         ]);
 
         //new a User model and save into it
@@ -62,10 +62,10 @@ class HotelController extends Controller
     {
         // validate user input is correct
         $request->validate([
-            'name' => 'required|max:255',
-            'address' => 'required',
+            'name' => 'required|max:30',
+            'address' => 'required|max:50',
             'intro'=>'max:255',
-            'phone' =>'digits:10',
+            'phone' =>'max:20',
         ]);
 
         //new a User model and save into it
