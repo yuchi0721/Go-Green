@@ -22,10 +22,11 @@
             <h1 class="title"><a href="/about">Go Green</a></h1>
             @if($user_logged_in)    
             <button class="login"><a href="/logout">Log out</a></button>
+            <p class="slogan">Hello！ {{$user->name}}</p>
             @else
             <button class="login"><a href="/login">Log in</a></button>
-            @endif
             <p class="slogan">Hello！ Customer</p>
+            @endif
             <div class="clear"></div>
         </div>
         <div class="clear"></div>
@@ -37,7 +38,7 @@
                     <li class="greenShop">綠色商店 <img id="greenShopArrow" src="{{ asset ('icons/arrow.png')}}" alt=""></li>
                     <div class="reviewShop subList">
                         <li><a href="/stores">商店總覽</a></li>
-                        <li><a>區域瀏覽</a></li>
+                        <li><a href="/store-areaview">區域瀏覽</a></li>
                         @if($user_logged_in)
                         @if($isAdmin==true)
                         <li><a href="/admin-stores">編輯商店</a></li>

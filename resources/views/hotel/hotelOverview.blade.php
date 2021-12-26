@@ -16,7 +16,7 @@
 <div class="hotel">
     @foreach ($hotels as $hotel)
     <div class="hotelInfo">
-        <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+        <img src="https://upload.cc/i1/2021/12/25/SvbNOX.png" alt="">
         <div class="clear"></div>
         <div>
             <label>{{ $hotel->name }}</label>
@@ -61,7 +61,7 @@
 
     .hotelInfo {
         border-radius: 10px;
-        width: 220px;
+        width: 200px;
         margin-left: 50px;
         margin-top: 20px;
         padding: 20px;
@@ -80,8 +80,9 @@
     }
 
     .hotelInfo img {
-        width: 200px;
-        margin-bottom: 15px;
+        margin-left:30px;
+        width: 140px;
+        margin-bottom: 10px;
     }
 
     .hotelInfo button {

@@ -17,7 +17,8 @@
 <div class="store">
     @foreach ($stores as $store)
     <div class="storeInfo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/7-eleven_logo.svg/255px-7-eleven_logo.svg.png" alt="">
+        <img src="https://upload.cc/i1/2021/12/25/cePUns.png
+" alt="">
         <div>
             <label>{{ $store->name }}</label>
         </div>
@@ -61,7 +62,7 @@
 
     .storeInfo {
         border-radius: 10px;
-        width: 220px;
+        width: 200px;
         margin-left: 50px;
         margin-top: 20px;
         padding: 20px;
@@ -70,11 +71,13 @@
         /* border: #a9d08d solid 2px; */
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
         transition: box-shadow 0.3s ease-in-out;
+        height: 225px;
     }
 
     .storeInfo img {
-        width: 200px;
-        margin-bottom: 15px;
+        margin-left:30px;
+        width: 140px;
+        margin-bottom: 10px;
     }
 
     .storeInfo .detail {

@@ -10,7 +10,7 @@
 <div class="hotel">
     <div class="hotel_info">
         <span class="hotelImg">
-            <img src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+            <img src="https://upload.cc/i1/2021/12/25/SvbNOX.png" alt="">
         </span>
         <span class="introduction">
             <ul>
@@ -44,13 +44,41 @@
             @foreach($comments as $comment)
             <li class="userIcon"> <span><i class="fas fa-user"></i><br></span>{{ $comment->user_id }}</li>
             <li class="commentDetail"><textarea disabled>{{ $comment->comment }}</textarea></li>
-            @if($isAdmin)
+            <!-- @if($isAdmin)
             <li><button form="delete_hotel_comment_{{$comment->id}}" class="crud-btn"><i class="fas fa-trash"></i></button></li>
             <form action="/delete-hotel-comment/{{$comment->id}}" method="POST" id="delete_hotel_comment_{{$comment->id}}" style="display: none;">
                 @csrf
                 @method('delete')
             </form>
+            @endif -->
+            @if($isAdmin)
+            <div id="check_delete_hotel_comment_{{$comment->id}}" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="close_modal('check_delete_hotel_comment_{{$comment->id}}')">&times;</span>
+                    
+                        <div class="mb-3">
+                            <label class="form-label">確定刪除嗎？</label>
+                            
+                        </div>
+                        
+                        <button id="cancel" onclick="close_modal('check_delete_hotel_comment_{{$comment->id}}')">取消</button>
+                        <button id="delete" form="delete_hotel_comment_{{$comment->id}}" >刪除</button>
+                        <form action="/delete-hotel-comment/{{$comment->id}}" method="POST" id="delete_hotel_comment_{{$comment->id}}" style="display: none;">
+                            @csrf
+                            @method('delete')
+                        </form>
+                        
+                        <br/>
+                        
+                    </form>
+                </div>
+            </div>
+            <li><button class="crud-btn" for="" onclick="open_modal('check_delete_hotel_comment_{{$comment->id}}')"><i class="fas fa-trash"></i></button></li>
+           
             @endif
+
+
+
             <div class="clear"></div>
             @endforeach
 
@@ -58,12 +86,25 @@
         </ul>
         <div class="clear"></div>
         @else
-        <h2>您需要登入來觀看留言</h2>
+        <h2 class="warning"><img src="{{ asset ('icons/warning.png')}}" width="25" alt="">&nbsp;&nbsp;您需要登入來觀看留言</h2>
         @endif
     </div>
 </div>
 
 @endsection
+
+<script>
+    function open_modal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "block";
+
+    }
+
+    function close_modal(id) {
+        var modal = document.getElementById(id);
+        modal.style.display = "none";
+    }
+</script>
 
 <style>
     .hotel {
@@ -80,7 +121,8 @@
     }
 
     .hotelImg img {
-        width: 500px;
+        width: 330px;
+        margin-left:140px;
     }
 
     .introduction li {
@@ -179,5 +221,85 @@
     #info {
         width: 400px;
         margin-top: 30px;
+    }
+    .warning{
+        text-align:center;
+        color:red;
+        font-size:20px;
+    }
+
+    /* delete_check */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        width: 400px;
+        height: 250px;
+        background-color: #fefefe;
+        margin: 10% auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        
+        /* Could be more or less, depending on screen size */
+        border-radius: 15px;
+        
+    }
+
+    .close {
+        text-align: left;
+        font-size: 24px;
+        cursor: pointer;
+        display: block;
+        width: 30px;
+        margin-bottom:50px;
+    }
+    .form-label{
+        font-size: 28px;
+        margin-left: 120px;
+    }
+    #cancel{
+        width: 100px;
+        height: 37px;
+        font-size:18px;
+        color: #007500;
+        background-color: #a9d08d;
+        cursor: pointer;
+        border:none;
+        border-radius: 7px;
+        margin-left:80px;
+    }
+    #delete{
+        height: 37px;
+        width: 100px;
+        font-size:18px;
+        color: white;
+        background-color: #007500;
+        cursor: pointer;
+        border:none;
+        border-radius: 7px;
+        margin-left:30px;
+    }
+    .mb-3{
+        margin-bottom:50px;
     }
 </style>

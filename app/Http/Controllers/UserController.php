@@ -36,9 +36,9 @@ class UserController extends Controller
     {
         // validate user input is correct
         $request->validate([
-            'name' => 'required',
-            'account' => 'required|unique:users,account',
-            'email' => 'required|email|unique:users,email',
+            'name' => 'required|max:10',
+            'account' => 'required|unique:users,account|max:12',
+            'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:8|max:12',
             'passwordcheck' => 'required|min:8|max:12',
         ]);

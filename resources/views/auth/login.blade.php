@@ -20,12 +20,12 @@
         </div>
         <label for="account">帳號</label><br />
         <input type="text" name="account" placeholder="請輸入帳號" value="{{old('account')}}"><br />
-        <span class="text-danger">@error('account'){{$message}}@enderror</span><br />
+        <span class="text-danger">@error('account'){{$message}}@enderror</span><br /><br />
         <label for="password">密碼</label><br />
         <input type="password" name="password" placeholder="請輸入密碼 " value="{{old('password')}}"><br />
-        <span class="text-danger">@error('password'){{$message}}@enderror</span><br />
+        <span class="text-danger">@error('password'){{$message}}@enderror</span><br /><br />
         <label for="password">驗證碼</label><br />
-        <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}"></div>
+        <div class="g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}"></div><br />
         @if(Session::has('g-recaptcha-response'))
         <p class="alert{{Session::get('alert-class','alert-info')}}">
         {{Session::get('g-recaptcha-response')}}
@@ -64,7 +64,7 @@
         border-radius: 8px;
         border: #a9d08d solid 2px;
         margin-top: 10px;
-        margin-bottom: 25px;
+        margin-bottom: 5px;
     }
 
     #submit {
