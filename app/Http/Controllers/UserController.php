@@ -37,7 +37,7 @@ class UserController extends Controller
         // validate user input is correct
         $request->validate([
             'name' => 'required|max:10',
-            'account' => 'required|unique:users,account|max:12',
+            'account' => ['required','unique:users,account','max:12','regex:/^([a-zA-Z0-9!@#$%&_]+)$/'],
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|min:8|max:12',
             'passwordcheck' => 'required|min:8|max:12',
@@ -69,8 +69,8 @@ class UserController extends Controller
         // validate user input is correct
         $user = User::where('id', '=', session('LoggedUser'))->first();
         $request->validate([
-            'name' => 'required',
-            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
+            'name' => 'required|max:10',
+            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id),'max:255'],
         ]);
 
 
@@ -94,7 +94,7 @@ class UserController extends Controller
         // validate user input is correct
         $request->validate([
             'name' => 'required',
-            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($id)],
+            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($id),'max:255'],
         ]);
 
 
@@ -130,8 +130,8 @@ class UserController extends Controller
         // validate user input is correct
         $user = User::where('id', '=', session('LoggedUser'))->first();
         $request->validate([
-            'password' => 'required|min:8|max:12',
-            'passwordcheck' => 'required|min:8|max:12',
+            'password' => 'required|min:8|max:12|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
+            'passwordcheck' => 'required|min:8|max:12|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
         ]);
 
         //check password = password-checked
@@ -168,8 +168,8 @@ class UserController extends Controller
     public function check(Request $request)
     {
         $request->validate([
-            'account' => 'required',
-            'password' => 'required|min:8|max:12',
+            'account' => 'required|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
+            'password' => 'required|min:8|max:12|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
             //google reCAPTCHA mechansim => call api with parameters(secretKey,response,remoteip)
             'g-recaptcha-response' => function ($attribute, $value, $fail) {
                 $secretKey = config('services.recaptcha.secret');

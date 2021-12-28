@@ -26,7 +26,7 @@ class HotelController extends Controller
         // validate user input is correct
         $request->validate([
             'name' => 'required|max:30',
-            'address' => 'required|max:50',
+            'address' => 'required|max:80',
             'intro'=>'max:255',
             'phone' =>'max:20',
         ]);
@@ -63,7 +63,7 @@ class HotelController extends Controller
         // validate user input is correct
         $request->validate([
             'name' => 'required|max:30',
-            'address' => 'required|max:50',
+            'address' => 'required|max:80',
             'intro'=>'max:255',
             'phone' =>'max:20',
         ]);
