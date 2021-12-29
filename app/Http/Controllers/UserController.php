@@ -37,8 +37,8 @@ class UserController extends Controller
         // validate user input is correct
         $request->validate([
             'name' => 'required|max:10',
-            'account' => ['required','unique:users,account','max:12','regex:/^([a-zA-Z0-9!@#$%&_]+)$/'],
-            'email' => 'required|email|unique:users,email|max:255',
+            'account' => ['required','unique:users,account','min:4','max:12','regex:/^([a-zA-Z0-9!@#$%&_]+)$/'],
+            'email' => 'required|email|unique:users,email|max:255|regex:/(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/',
             'password' => 'required|min:8|max:12',
             'passwordcheck' => 'required|min:8|max:12',
         ]);
@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         // validate user input is correct
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:10',
             'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($id),'max:255'],
         ]);
 
@@ -169,7 +169,7 @@ class UserController extends Controller
     {
         $request->validate([
             'account' => 'required|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
-            'password' => 'required|min:8|max:12|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
+            'password' => 'required|max:12|regex:/^([a-zA-Z0-9!@#$%&_]+)$/',
             //google reCAPTCHA mechansim => call api with parameters(secretKey,response,remoteip)
             'g-recaptcha-response' => function ($attribute, $value, $fail) {
                 $secretKey = config('services.recaptcha.secret');
