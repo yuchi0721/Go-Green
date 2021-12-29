@@ -38,7 +38,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:10',
             'account' => ['required','unique:users,account','min:4','max:12','regex:/^([a-zA-Z0-9!@#$%&_]+)$/'],
-            'email' => 'required|email|unique:users,email|max:255|regex:/(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/',
+            'email' => 'required|unique:users,email|max:255|regex:/(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/',
             'password' => 'required|min:8|max:12',
             'passwordcheck' => 'required|min:8|max:12',
         ]);
@@ -70,7 +70,7 @@ class UserController extends Controller
         $user = User::where('id', '=', session('LoggedUser'))->first();
         $request->validate([
             'name' => 'required|max:10',
-            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id),'max:255'],
+            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($user->id),'max:255','regex:/(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/'],
         ]);
 
 
