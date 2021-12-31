@@ -160,7 +160,7 @@ class UserController extends Controller
             $isAdmin = $user->admin;
         }
         if ($isAdmin) {
-            return view('admin.users', ['users' => $users, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+            return view('admin.users', ['user'=>$user,'users' => $users, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
         return view('admin.profile', ['user' => $user, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }

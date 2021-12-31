@@ -19,17 +19,17 @@ Route::post('/signup', [Controllers\UserController::class,'createUser'])->name('
 Route::post('/check', [Controllers\UserController::class,'check'])->name('auth.check');
 Route::get('/login', [Controllers\UserController::class,'login'])->middleware('AlreadyLoggedIn');
 Route::get('/logout',[Controllers\UserController::class,'logout']);
-
 Route::get('/profile',[Controllers\UserController::class,'profile'])->middleware('isLogged');
 Route::post('/update-user/{id}',[Controllers\UserController::class,'updateUser']);
 Route::get('/reset-password',[Controllers\UserController::class,'resetPassword'])->middleware('isLogged');
 Route::post('/reset-password/{id}',[Controllers\UserController::class,'resetUserPassword']);
-
 Route::get('/users', [Controllers\UserController::class,'showUser'])->middleware('isLogged');
 Route::post('/users/{id}', [Controllers\UserController::class,'adminUpdateUser']);
 
 
-Route::get('/', [Controllers\HotelController::class,'hotelOverview']);
+Route::get('/', [Controllers\HomeController::class,'about']);
+Route::get('/about', [Controllers\HomeController::class,'about']);
+
 Route::get('/hotels', [Controllers\HotelController::class,'hotelOverview']);
 Route::get('/hotel-areaview', [Controllers\HotelController::class,'hotelAreaview']);
 Route::get('/hotel-areaview/{area}', [Controllers\HotelController::class,'findHotel']);
@@ -41,8 +41,6 @@ Route::post('/create-hotel-comment', [Controllers\HotelController::class,'create
 Route::delete('/delete-hotel-comment/{id}', [Controllers\HotelController::class,'deleteComment'])->middleware('isLogged');
 Route::get('/hotels/search', [Controllers\HotelController::class,'readHotel']);
 Route::get('/hotels/{id}', [Controllers\HotelController::class,'hotelDetail']);
-
-Route::get('/about', [Controllers\HotelController::class,'about']);
 
 Route::get('/stores', [Controllers\StoreController::class,'storeOverview']);
 Route::get('/store-areaview', [Controllers\StoreController::class,'storeAreaview']);
