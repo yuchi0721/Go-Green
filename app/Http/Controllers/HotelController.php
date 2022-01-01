@@ -9,17 +9,7 @@ use App\Models\User;
 
 class HotelController extends Controller
 {
-    public function about()
-    {
-        $user = $user_logged_in = $isAdmin = false;
 
-        if (session()->has('LoggedUser')) {
-            $user = User::where('id', '=', session('LoggedUser'))->first();
-            $isAdmin = $user->admin;
-            $user_logged_in = true;
-        }
-        return view('about', ['user' => $user, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
-    }
 
     public function createHotel(Request $request)
     {
@@ -27,21 +17,29 @@ class HotelController extends Controller
         $request->validate([
             'name' => 'required|max:30',
             'address' => 'required|max:80',
-            'intro'=>'max:255',
-            'phone' =>'max:20',
+            'intro' => 'max:255',
+            'phone' => 'max:20',
         ]);
 
         //new a User model and save into it
         $hotel = new \App\Models\greenHotel;
         $hotel->name = $request->name;
-        $hotel->intro = $request->intro;
         $hotel->address = $request->address;
-        $hotel->phone = $request->phone;
+        if ($request->intro) {
+            $hotel->intro = $request->intro;
+        }else{
+            $hotel->intro = '未提供';
+        }
+        if ($request->phone) {
+            $hotel->phone = $request->phone;
+        }else{
+            $hotel->phone = '未提供';
+        }
         $query = $hotel->save();
 
         //if save model successful, return success message,else return error
         if ($query) {
-            return back()->with('success', 'You have been successfuly create hotel');
+            return back()->with('success', 'You have been successfully create hotel !');
         } else {
             return back()->with('fail', 'something went wrong');
         }
@@ -52,7 +50,7 @@ class HotelController extends Controller
         $hotel = greenHotel::find($id);
         $hotel->delete();
         if ($hotel) {
-            return back()->with('success', 'You have been successfuly create hotel');
+            return back()->with('success', 'You have been successfuly delete hotel !');
         } else {
             return back()->with('fail', 'something went wrong');
         }
@@ -64,8 +62,8 @@ class HotelController extends Controller
         $request->validate([
             'name' => 'required|max:30',
             'address' => 'required|max:80',
-            'intro'=>'max:255',
-            'phone' =>'max:20',
+            'intro' => 'max:255',
+            'phone' => 'max:20',
         ]);
 
         //new a User model and save into it
@@ -78,7 +76,7 @@ class HotelController extends Controller
 
         //if save model successful, return success message,else return error
         if ($hotel) {
-            return back()->with('success', 'You have been successfuly create hotel');
+            return back()->with('success', 'You have been successfuly update hotel !');
         } else {
             return back()->with('fail', 'something went wrong');
         }
@@ -95,10 +93,10 @@ class HotelController extends Controller
         }
 
         if ($isAdmin) {
-            return view('hotel.hotels', ['user'=>$user,'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+            return view('hotel.hotels', ['user' => $user, 'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
 
-        return view('hotel.hotelOverview', ['user'=>$user,'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        return view('hotel.hotelOverview', ['user' => $user, 'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function hotelDetail($id)
@@ -112,19 +110,19 @@ class HotelController extends Controller
             $comments = \App\Models\Hotel_comments::where('hotel_id', $id)->get();
             return view('hotel.hotelDetail', ['user' => $user, 'hotel' => $hotel, 'comments' => $comments, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
         }
-        return view('hotel.hotelDetail', ['user' => $user,'hotel' => $hotel, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        return view('hotel.hotelDetail', ['user' => $user, 'hotel' => $hotel, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function hotelOverview()
     {
-        $user=$user_logged_in = $isAdmin = false;
+        $user = $user_logged_in = $isAdmin = false;
         if (session()->has('LoggedUser')) {
             $user = User::where('id', '=', session('LoggedUser'))->first();
             $isAdmin = $user->admin;
             $user_logged_in = true;
         }
         $hotels = greenHotel::paginate(15);
-        return view('hotel.hotelOverview', ['user' => $user,'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        return view('hotel.hotelOverview', ['user' => $user, 'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
     public function hotelAreaview()
     {
@@ -135,13 +133,13 @@ class HotelController extends Controller
             $user_logged_in = true;
         }
         $hotels = \App\Models\greenHotel::get();
-        return view('hotel.hotelAreaview', ['user' => $user,'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        return view('hotel.hotelAreaview', ['user' => $user, 'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function findHotel($area)
     {
         $q = $area;
-        $user=$user_logged_in = $isAdmin = false;
+        $user = $user_logged_in = $isAdmin = false;
         if (session()->has('LoggedUser')) {
             $user = User::where('id', '=', session('LoggedUser'))->first();
             $isAdmin = $user->admin;
@@ -149,7 +147,7 @@ class HotelController extends Controller
         }
 
         $hotels = greenHotel::where('address', 'like', '%' . $q . '%')->paginate(15);
-        return view('hotel.hotelOverview', ['user' => $user,'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        return view('hotel.hotelOverview', ['user' => $user, 'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 
     public function createComment(Request $request)
@@ -195,6 +193,6 @@ class HotelController extends Controller
             $hotels = greenHotel::where('name', 'like', '%' . $q . '%')->paginate(15);
         }
 
-        return view('hotel.hotelOverview', ['user' => $user,'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
+        return view('hotel.hotelOverview', ['user' => $user, 'hotels' => $hotels, 'isAdmin' => $isAdmin, 'user_logged_in' => $user_logged_in]);
     }
 }

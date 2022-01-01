@@ -8,6 +8,18 @@
 
 @section('contents')
 <button class="crud-btn" onclick="open_modal('create_hotel')"><i class="fa fa-plus"></i></button>
+<div class="results" style="text-align: center;">
+    @if(Session::get('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+    @if(Session::get('fail'))
+    <div class="alert alert-danger">
+        {{Session::get('fail')}}
+    </div>
+    @endif
+</div>
 <table class="usersTable">
     <thead>
         <tr>
@@ -28,7 +40,7 @@
             <td>{{$hotel->phone}}</td>
             <td class="lastTD">
                 <button class="crud-btn" onclick="open_modal('edit_hotel{{ $hotel->id }}')"><i class="fas fa-pen"></i></button>
-                <button class="crud-btn" form="delete_hotel_{{$hotel->id}}" type="submit"><i  class="fas fa-trash"></i></button>
+                <button class="crud-btn" form="delete_hotel_{{$hotel->id}}" type="submit"><i class="fas fa-trash"></i></button>
                 <form action="/delete-hotel/{{$hotel->id}}" method="POST" id="delete_hotel_{{$hotel->id}}" style="display: none;">
                     @csrf
                     @method('delete')
@@ -42,18 +54,6 @@
                 <form method="POST" action="/edit-hotel/{{$hotel->id}}">
                     @csrf
                     @method('patch')
-                    <div class="results">
-                        @if(Session::get('success'))
-                        <div class="alert alert-success">
-                            {{Session::get('success')}}
-                        </div>
-                        @endif
-                        @if(Session::get('fail'))
-                        <div class="alert alert-danger">
-                            {{Session::get('fail')}}
-                        </div>
-                        @endif
-                    </div>
                     <div class="mb-3">
                         <label class="form-label">旅店名稱</label>
                         <input class="form-control" value="{{$hotel->name}}" name="name" type="text" required><br />
@@ -62,6 +62,7 @@
                     <div class="mb-3">
                         <label class="form-label" id="introduction">旅店簡介</label>
                         <textarea class="form-control" name="intro" type="url">{{$hotel->intro}}</textarea>
+                        <span class="text-danger">@error('intro'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">旅店地址</label>
@@ -71,6 +72,7 @@
                     <div class="mb-3">
                         <label class="form-label">旅店電話</label>
                         <input class="form-control" value="{{$hotel->phone}}" name="phone" type="text"><br />
+                        <span class="text-danger">@error('phone'){{$message}}@enderror</span><br />
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>
@@ -85,18 +87,6 @@
             <span class="close" onclick="close_modal('create_hotel')">&times;</span>
             <form method="POST" action="/create-hotel">
                 @csrf
-                <div class="results">
-                    @if(Session::get('success'))
-                    <div class="alert alert-success">
-                        {{Session::get('success')}}
-                    </div>
-                    @endif
-                    @if(Session::get('fail'))
-                    <div class="alert alert-danger">
-                        {{Session::get('fail')}}
-                    </div>
-                    @endif
-                </div>
                 <div class="mb-3">
                     <label class="form-label">旅店名稱</label>
                     <input class="form-control" name="name" type="text" required><br />
@@ -105,6 +95,7 @@
                 <div class="mb-3">
                     <label class="form-label" id="introduction">旅店簡介</label>
                     <textarea class="form-control" name="intro" type="url"></textarea>
+                    <span class="text-danger">@error('intro'){{$message}}@enderror</span><br />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">旅店地址</label>
@@ -114,7 +105,7 @@
                 <div class="mb-3">
                     <label class="form-label">旅店電話</label>
                     <input class="form-control" name="phone" type="text"><br />
-                    <span class="text-danger">@error('address'){{$message}}@enderror</span><br />
+                    <span class="text-danger">@error('phone'){{$message}}@enderror</span><br />
                 </div>
                 <br />
                 <button class="btn btn-warning" type="submit" id="submit">儲存</button>
@@ -138,139 +129,142 @@
 </script>
 
 <style>
-        .modal {
-            display: none;
-            /* Hidden by default */
-            position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%;
-            /* Full width */
-            height: 100%;
-            /* Full height */
-            overflow: auto;
-            /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0);
-            /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4);
-            /* Black w/ opacity */
-        }
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
 
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 60%;
-            /* Could be more or less, depending on screen size */
-            border-radius: 15px;
-        
-            text-align: right;
-        }
 
-        /* table */
-        .usersTable {
-            margin: auto;
-            width: 80%;
-            text-align: center;
-        }
 
-        .usersTable tbody {
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 60%;
+        /* Could be more or less, depending on screen size */
+        border-radius: 15px;
 
-        .usersTable th {
-            padding: 15px 0px;
-            background-color: #a9d08d;
-            border-right: #007500 solid 2px;
-        }
+        text-align: right;
+    }
 
-        .usersTable td {
-            padding: 15px 5px;
-            border-right: 2px #bbb solid;
-        }
+    /* table */
+    .usersTable {
+        margin: auto;
+        width: 80%;
+        text-align: center;
+    }
 
-        .usersTable th.lastTH {
-            border-right: none;
-        }
+    .usersTable tbody {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
-        .usersTable tr:nth-child(odd) {
-            background-color: rgb(230, 230, 230);
-        }
+    .usersTable th {
+        padding: 15px 0px;
+        background-color: #a9d08d;
+        border-right: #007500 solid 2px;
+    }
 
-        .usersTable tr:nth-child(even) {
-            background-color: rgb(246, 246, 246);
-        }
+    .usersTable td {
+        padding: 15px 5px;
+        border-right: 2px #bbb solid;
+    }
 
-        .usersTable tr:hover {
-            background-color: rgb(222, 222, 222);
-        }
+    .usersTable th.lastTH {
+        border-right: none;
+    }
 
-        .usersTable td.lastTD {
-            border-right: none;
-            cursor: pointer;
-            display: block;
-        }
+    .usersTable tr:nth-child(odd) {
+        background-color: rgb(230, 230, 230);
+    }
 
-        .usersTable td.lastTD label {
-            cursor: pointer;
-        }
+    .usersTable tr:nth-child(even) {
+        background-color: rgb(246, 246, 246);
+    }
 
-        /* modidy */
-        .modal-content label {
-            font-size: 16px;
-        }
+    .usersTable tr:hover {
+        background-color: rgb(222, 222, 222);
+    }
 
-        .modal-content input {
-            margin-right: 25%;
-            width: 400px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: #a9d08d solid 2px;
-            margin-top: 10px;
-            margin-bottom: 25px;
-        }
+    .usersTable td.lastTD {
+        border-right: none;
+        cursor: pointer;
+        display: block;
+    }
 
-        .modal-content textarea {
-            margin-right: 25%;
-            width: 400px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: #a9d08d solid 2px;
-            margin-top: 10px;
-            margin-bottom: 25px;
-        }
+    .usersTable td.lastTD label {
+        cursor: pointer;
+    }
 
-        #submit {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: #a9d08d solid 2px;
-            width: 200px;
-            color: #007500;
-            background-color: #a9d08d;
-            cursor: pointer;
-            margin-right: 40%;
-            margin-bottom: 30px;
-        }
+    /* modidy */
+    .modal-content label {
+        font-size: 16px;
+    }
 
-        .close {
-            text-align: left;
-            font-size: 24px;
-            cursor: pointer;
+    .modal-content input {
+        margin-right: 25%;
+        width: 400px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: #a9d08d solid 2px;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+
+    .modal-content textarea {
+        margin-right: 25%;
+        width: 400px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: #a9d08d solid 2px;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+
+    #submit {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: #a9d08d solid 2px;
+        width: 200px;
+        color: #007500;
+        background-color: #a9d08d;
+        cursor: pointer;
+        margin-right: 40%;
+        margin-bottom: 30px;
+    }
+
+    .close {
+        text-align: left;
+        font-size: 24px;
+        cursor: pointer;
         display: block;
         width: 30px;
     }
-    #introduction{
-        position:relative;
-        bottom:70;
+
+    #introduction {
+        position: relative;
+        bottom: 70;
     }
 </style>
