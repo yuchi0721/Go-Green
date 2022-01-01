@@ -58,7 +58,7 @@ class UserController extends Controller
 
         //if save model successful, return success message,else return error
         if ($query) {
-            return back()->with('success', 'You have been successfuly registered');
+            return back()->with('success', 'You have been successfully registered');
         } else {
             return back()->with('fail', 'something went wrong');
         }
@@ -84,7 +84,7 @@ class UserController extends Controller
 
         //if update model successful, return success message,else return error
         if ($user) {
-            return back()->with('success', 'You have been successfuly update');
+            return back()->with('success', 'You have been successfully update');
         } else {
             return back()->with('fail', 'something went wrong');
         }
@@ -108,7 +108,7 @@ class UserController extends Controller
 
         //if update model successful, return success message,else return error
         if ($user) {
-            return back()->with('success', 'You have been successfuly update');
+            return back()->with('success', 'You have been successfully update');
         } else {
             return back()->with('fail', 'something went wrong');
         }
@@ -144,7 +144,7 @@ class UserController extends Controller
         ]);
         //if reset User password successful, return success message,else return error
         if ($user) {
-            return back()->with('success', 'You have been successfuly reset');
+            return back()->with('success', 'You have been successfully reset');
         } else {
             return back()->with('fail', 'reset error');
         }

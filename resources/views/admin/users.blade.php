@@ -7,6 +7,18 @@
 @endsection
 
 @section('contents')
+<div class="results" style="text-align: center;">
+    @if(Session::get('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+    @if(Session::get('fail'))
+    <div class="alert alert-danger">
+        {{Session::get('fail')}}
+    </div>
+    @endif
+</div>
 <table class="usersTable">
     <thead>
         <tr>
@@ -31,22 +43,10 @@
                 <span class="close" onclick="close_modal('edit_user{{ $u->id }}')">&times;</span>
                 <form method="POST" action="/users/{{$u->id}}">
                     @csrf
-                    <div class="results">
-                        @if(Session::get('success'))
-                        <div class="alert alert-success">
-                            {{Session::get('success')}}
-                        </div>
-                        @endif
-                        @if(Session::get('fail'))
-                        <div class="alert alert-danger">
-                            {{Session::get('fail')}}
-                        </div>
-                        @endif
-                    </div>
                     <div class="mb-3">
                         <label class="form-label">使用者名稱</label>
-                        <input class="form-control" value="{{$u->name}}" name="name" type="text" required><br/>
-                        <span class="text-danger">@error('name'){{$message}}@enderror</span><br/>
+                        <input class="form-control" value="{{$u->name}}" name="name" type="text" required><br />
+                        <span class="text-danger">@error('name'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">帳號</label>
@@ -54,8 +54,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">email</label>
-                        <input class="form-control" value="{{$u->email}}" name="email" type="text" required><br/> 
-                        <span class="text-danger">@error('email'){{$message}}@enderror</span><br/>
+                        <input class="form-control" value="{{$u->email}}" name="email" type="text" required><br />
+                        <span class="text-danger">@error('email'){{$message}}@enderror</span><br />
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>
@@ -96,6 +96,7 @@
         cursor: pointer;
         /* Mouse pointer on hover */
     }
+
     .modal {
         display: none;
         /* Hidden by default */
@@ -135,7 +136,7 @@
         margin: auto;
         width: 80%;
         text-align: center;
-        table-layout:fixed;
+        table-layout: fixed;
     }
 
     .usersTable tbody {
@@ -150,7 +151,7 @@
     }
 
     .usersTable td {
-        word-wrap:break-word;
+        word-wrap: break-word;
         padding: 15px 5px;
         border-right: 2px #bbb solid;
     }
@@ -217,5 +218,4 @@
         display: block;
         width: 30px;
     }
-
 </style>
