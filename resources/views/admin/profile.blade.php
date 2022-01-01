@@ -53,6 +53,8 @@
     }
     .update label{
         font-size:18px;
+        display: block;
+        padding-top: 12px;
     }
     .update input{
         width: 400px;
@@ -61,7 +63,7 @@
         border-radius: 8px;
         border: #a9d08d solid 2px;
         margin-top:10px;
-        margin-bottom:25px;
+        margin-bottom:5px;
     }
     #submit{
         width:200px;
@@ -69,6 +71,7 @@
         background-color:#a9d08d;
         cursor: pointer;
         margin-left:100px;
+        margin-top:15px;
     }
     .text-danger{
         color: red;

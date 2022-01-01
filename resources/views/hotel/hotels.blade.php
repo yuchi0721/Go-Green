@@ -192,7 +192,7 @@
         }
 
         .usersTable td {
-            padding: 15px 0px;
+            padding: 15px 5px;
             border-right: 2px #bbb solid;
         }
 

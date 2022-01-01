@@ -12,8 +12,8 @@
         <tr>
             <th width="25%">使用者名稱</th>
             <th width="25%">帳號</th>
-            <th width="36%">信箱</th>
-            <th width="10%" class="lastTH"></th>
+            <th width="32%">信箱</th>
+            <th width="15%" class="lastTH"></th>
         </tr>
     </thead>
 
@@ -135,6 +135,7 @@
         margin: auto;
         width: 80%;
         text-align: center;
+        table-layout:fixed;
     }
 
     .usersTable tbody {
@@ -149,7 +150,8 @@
     }
 
     .usersTable td {
-        padding: 15px 0px;
+        word-wrap:break-word;
+        padding: 15px 5px;
         border-right: 2px #bbb solid;
     }
 

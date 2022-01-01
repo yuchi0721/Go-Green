@@ -50,6 +50,8 @@
 
     .reset label {
         font-size: 18px;
+        display: block;
+        padding-top: 12px;
     }
 
     .reset input {
@@ -59,10 +61,11 @@
         border-radius: 8px;
         border: #a9d08d solid 2px;
         margin-top: 10px;
-        margin-bottom: 25px;
+        margin-bottom: 5px;
     }
 
     #submit {
+        margin-top:15px;
         width: 200px;
         color: #007500;
         background-color: #a9d08d;
