@@ -122,7 +122,7 @@
 <style>
   .region {
     padding-top: 40px;
-    width: 961px;
+    width: 962px;
     height: 300px;
     margin: auto;
   }
