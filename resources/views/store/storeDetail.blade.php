@@ -177,6 +177,7 @@
         border: #a9d08d solid 2px;
     }
     .commentDetail textarea{
+        background-color: white;
         border:none;
         resize:none;
         width: 100%;
