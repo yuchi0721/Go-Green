@@ -19,6 +19,13 @@
         {{Session::get('fail')}}
     </div>
     @endif
+    @if(count($errors))
+    <ul>
+        @foreach($errors->all() as $error)
+        <li class="alert alert-danger">{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
 </div>
 <table class="usersTable">
     <thead>
@@ -57,29 +64,25 @@
                     <div class="mb-3">
                         <label class="form-label">旅店名稱</label>
                         <input class="form-control" value="{{$hotel->name}}" name="name" type="text" required><br />
-                        <span class="text-danger">@error('name'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" id="introduction">旅店簡介</label>
                         <textarea class="form-control" name="intro" type="url">{{$hotel->intro}}</textarea>
-                        <span class="text-danger">@error('intro'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">旅店地址</label>
                         <input class="form-control" value="{{$hotel->address}}" name="address" type="text" required><br />
-                        <span class="text-danger">@error('address'){{$message}}@enderror</span><br />
+
                     </div>
                     <div class="mb-3">
                         <label class="form-label">旅店電話</label>
                         <input class="form-control" value="{{$hotel->phone}}" name="phone" type="text"><br />
-                        <span class="text-danger">@error('phone'){{$message}}@enderror</span><br />
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>
                 </form>
             </div>
         </div>
-
         @endforeach
     </tbody>
     <div id="create_hotel" class="modal">

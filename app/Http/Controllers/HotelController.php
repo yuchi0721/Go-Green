@@ -73,7 +73,16 @@ class HotelController extends Controller
             'phone' => $request->phone,
             'intro' => $request->intro,
         ]);
-
+        if ($request->intro) {
+            $hotel->intro = $request->intro;
+        }else{
+            $hotel->intro = '未提供';
+        }
+        if ($request->phone) {
+            $hotel->phone = $request->phone;
+        }else{
+            $hotel->phone = '未提供';
+        }
         //if save model successful, return success message,else return error
         if ($hotel) {
             return back()->with('success', 'You have been successfuly update hotel !');

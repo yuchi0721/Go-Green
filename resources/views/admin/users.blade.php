@@ -18,6 +18,13 @@
         {{Session::get('fail')}}
     </div>
     @endif
+    @if(count($errors))
+    <ul>
+        @foreach($errors->all() as $error)
+        <li class="alert alert-danger">{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
 </div>
 <table class="usersTable">
     <thead>
@@ -46,7 +53,6 @@
                     <div class="mb-3">
                         <label class="form-label">使用者名稱</label>
                         <input class="form-control" value="{{$u->name}}" name="name" type="text" required><br />
-                        <span class="text-danger">@error('name'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">帳號</label>
@@ -55,7 +61,6 @@
                     <div class="mb-3">
                         <label class="form-label">email</label>
                         <input class="form-control" value="{{$u->email}}" name="email" type="text" required><br />
-                        <span class="text-danger">@error('email'){{$message}}@enderror</span><br />
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>

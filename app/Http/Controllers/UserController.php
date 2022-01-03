@@ -77,7 +77,7 @@ class UserController extends Controller
         //update a User
 
         $user = User::where('account', '=', $user->account)->update([
-            'name' => $request->name,
+            'name' => $request->name,   
             'email' => $request->email,
         ]);
 
@@ -94,7 +94,7 @@ class UserController extends Controller
         // validate user input is correct
         $request->validate([
             'name' => 'required|max:10',
-            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($id),'max:255'],
+            'email' =>  ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore($id),'max:255','regex:/(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/'],
         ]);
 
 

@@ -17,7 +17,7 @@
                 <li><img src="{{ asset ('icons/hotel.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $store->name }}</li>
                 <li><img src="{{ asset ('icons/phone.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $store->phone }}</li>
                 <li><img src="{{ asset ('icons/locate.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $store->address }}</li>
-                <!-- <li>商店簡介：{{ $store->intro }}</li> -->
+                <li>商店簡介：{{ $store->intro }}</li>
             </ul>
         </span>
         <div class="clear"></div>

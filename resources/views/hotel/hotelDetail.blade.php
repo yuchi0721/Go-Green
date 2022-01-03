@@ -17,7 +17,7 @@
                 <li><img src="{{ asset ('icons/hotel.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->name }}</li>
                 <li><img src="{{ asset ('icons/phone.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->phone }}</li>
                 <li><img src="{{ asset ('icons/locate.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->address }}</li>
-                <li id="info">{{ $hotel->intro }}</li>
+                <li id="info">旅店簡介：{{ $hotel->intro }}</li>
             </ul>
         </span>
         <div class="clear"></div>

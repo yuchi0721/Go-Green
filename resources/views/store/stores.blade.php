@@ -19,6 +19,13 @@
         {{Session::get('fail')}}
     </div>
     @endif
+    @if(count($errors))
+    <ul>
+        @foreach($errors->all() as $error)
+        <li class="alert alert-danger">{{ $error }}</li>
+        @endforeach
+    </ul>
+    @endif
 </div>
 <table class="usersTable">
     <thead>
@@ -57,7 +64,6 @@
                     <div class="mb-3">
                         <label class="form-label">商店名稱</label>
                         <input class="form-control" value="{{$store->name}}" name="name" type="text" required><br />
-                        <span class="text-danger">@error('name'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" id="introduction">商店簡介</label>
@@ -66,12 +72,10 @@
                     <div class="mb-3">
                         <label class="form-label">商店地址</label>
                         <input class="form-control" value="{{$store->address}}" name="address" type="text" required><br />
-                        <span class="text-danger">@error('address'){{$message}}@enderror</span><br />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">商店電話</label>
                         <input class="form-control" value="{{$store->phone}}" name="phone" type="text"><br />
-                        <span class="text-danger">@error('address'){{$message}}@enderror</span><br />
                     </div>
                     <br />
                     <button class="btn btn-warning" type="submit" id="submit">儲存</button>

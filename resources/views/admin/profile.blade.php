@@ -28,7 +28,6 @@
             <span class="text-danger">@error('name'){{$message}}@enderror</span><br/>
             <label for="account" >帳號</label><br/>
             <input type="text" name="account" placeholder="帳號" value="{{$user->account}}" readonly><br/>
-            <!-- <span class="text-danger">@error('account'){{$message}}@enderror</span><br/> -->
             <label for="email">Email</label><br/>
             <input type="text" name="email" placeholder="電子郵件" value="{{$user->email}}"><br/>
             <span class="text-danger">@error('email'){{$message}}@enderror</span><br/>

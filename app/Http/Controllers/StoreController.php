@@ -71,7 +71,16 @@ class StoreController extends Controller
             'phone' => $request->phone,
             'intro' => $request->intro,
         ]);
-
+        if ($request->intro) {
+            $store->intro = $request->intro;
+        }else{
+            $store->intro = '未提供';
+        }
+        if ($request->phone) {
+            $store->phone = $request->phone;
+        }else{
+            $store->phone = '未提供';
+        }
         //if save model successful, return success message,else return error
         if ($store) {
             return back()->with('success', 'You have been successfully update store');
