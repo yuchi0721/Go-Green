@@ -16,9 +16,9 @@ class CreateGreenHotelTable extends Migration
         Schema::create('green_hotels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('intro');
+            $table->string('intro')->nullable()->change();
             $table->string('address');
-            $table->string('phone');
+            $table->string('phone')->nullable()->change();
             $table->timestamps();
         });
     }

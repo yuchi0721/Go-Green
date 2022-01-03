@@ -8,6 +8,18 @@
 
 @section('contents')
 <button class="crud-btn" onclick="open_modal('create_store')"><i class="fa fa-plus"></i></button>
+<div class="results" style="text-align: center;">
+    @if(Session::get('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+    @if(Session::get('fail'))
+    <div class="alert alert-danger">
+        {{Session::get('fail')}}
+    </div>
+    @endif
+</div>
 <table class="usersTable">
     <thead>
         <tr>
@@ -28,7 +40,7 @@
             <td>{{$store->phone}}</td>
             <td class="lastTD">
                 <button class="crud-btn" onclick="open_modal('edit_store{{ $store->id }}')"><i class="fas fa-pen"></i></button>
-                <button class="crud-btn" form="delete_store_{{$store->id}}" type="submit"><i  class="fas fa-trash"></i></button>
+                <button class="crud-btn" form="delete_store_{{$store->id}}" type="submit"><i class="fas fa-trash"></i></button>
                 <form action="/delete-store/{{$store->id}}" method="POST" id="delete_store_{{$store->id}}" style="display: none;">
                     @csrf
                     @method('delete')
@@ -42,18 +54,6 @@
                 <form method="POST" action="/edit-store/{{$store->id}}">
                     @csrf
                     @method('patch')
-                    <div class="results">
-                        @if(Session::get('success'))
-                        <div class="alert alert-success">
-                            {{Session::get('success')}}
-                        </div>
-                        @endif
-                        @if(Session::get('fail'))
-                        <div class="alert alert-danger">
-                            {{Session::get('fail')}}
-                        </div>
-                        @endif
-                    </div>
                     <div class="mb-3">
                         <label class="form-label">商店名稱</label>
                         <input class="form-control" value="{{$store->name}}" name="name" type="text" required><br />
@@ -86,18 +86,6 @@
             <span class="close" onclick="close_modal('create_store')">&times;</span>
             <form method="POST" action="/create-store">
                 @csrf
-                <div class="results">
-                    @if(Session::get('success'))
-                    <div class="alert alert-success">
-                        {{Session::get('success')}}
-                    </div>
-                    @endif
-                    @if(Session::get('fail'))
-                    <div class="alert alert-danger">
-                        {{Session::get('fail')}}
-                    </div>
-                    @endif
-                </div>
                 <div class="mb-3">
                     <label class="form-label">商店名稱</label>
                     <input class="form-control" name="name" type="text" required><br />
@@ -284,8 +272,9 @@
         display: block;
         width: 30px;
     }
-    #introduction{
-        position:relative;
-        bottom:70;
+
+    #introduction {
+        position: relative;
+        bottom: 70;
     }
 </style>

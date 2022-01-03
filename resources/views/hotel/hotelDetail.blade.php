@@ -35,9 +35,9 @@
                 <input type="text" style="display: none;" name="hotel_id" value="{{$hotel->id}}">
                 <textarea style="resize: none;" type="text" name="comment" placeholder="留下評論吧！" require></textarea>
                 <input type="submit" id="submit">
-                <div class="clear"></div>  
+                <div class="clear"></div>
             </form>
-            
+
             <div class="clear"></div>
         </div>
         <ul>
@@ -55,33 +55,25 @@
             <div id="check_delete_hotel_comment_{{$comment->id}}" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="close_modal('check_delete_hotel_comment_{{$comment->id}}')">&times;</span>
-                    
-                        <div class="mb-3">
-                            <label class="form-label">確定刪除嗎？</label>
-                            
-                        </div>
-                        
-                        <button id="cancel" onclick="close_modal('check_delete_hotel_comment_{{$comment->id}}')">取消</button>
-                        <button id="delete" form="delete_hotel_comment_{{$comment->id}}" >刪除</button>
-                        <form action="/delete-hotel-comment/{{$comment->id}}" method="POST" id="delete_hotel_comment_{{$comment->id}}" style="display: none;">
-                            @csrf
-                            @method('delete')
-                        </form>
-                        
-                        <br/>
-                        
+                    <div class="mb-3">
+                        <label class="form-label">確定刪除嗎？</label>
+                    </div>
+                    <button id="cancel" onclick="close_modal('check_delete_hotel_comment_{{$comment->id}}')">取消</button>
+                    <button id="delete" form="delete_hotel_comment_{{$comment->id}}">刪除</button>
+                    <form action="/delete-hotel-comment/{{$comment->id}}" method="POST" id="delete_hotel_comment_{{$comment->id}}" style="display: none;">
+                        @csrf
+                        @method('delete')
+                    </form>
+
+                    <br />
+
                     </form>
                 </div>
             </div>
             <li><button class="crud-btn" for="" onclick="open_modal('check_delete_hotel_comment_{{$comment->id}}')"><i class="fas fa-trash"></i></button></li>
-           
             @endif
-
-
-
             <div class="clear"></div>
             @endforeach
-
             <div class="clear"></div>
         </ul>
         <div class="clear"></div>
@@ -122,7 +114,7 @@
 
     .hotelImg img {
         width: 330px;
-        margin-left:140px;
+        margin-left: 140px;
     }
 
     .introduction li {
@@ -150,12 +142,14 @@
         text-align: center;
         font-size: 18px;
     }
-    .hotel_comments li button{
-        margin-left:20px;
-        margin-top:5px;
+
+    .hotel_comments li button {
+        margin-left: 20px;
+        margin-top: 5px;
     }
-    .userIcon{
-        margin-top:10px;
+
+    .userIcon {
+        margin-top: 10px;
     }
 
     .comment {
@@ -178,14 +172,22 @@
         margin-bottom: 15px;
         border: #a9d08d solid 2px;
     }
+<<<<<<< HEAD
     .commentDetail textarea{
         background-color: white;
         border:none;
         resize:none;
+=======
+
+    .commentDetail textarea {
+        border: none;
+        resize: none;
+>>>>>>> 4da20c5fb176db1755246c555c46c0fa7a0fb60c
         width: 100%;
-        height:55px;
+        height: 55px;
         font-size: 18px;
     }
+
     .leaveComment {
         text-align: center;
         margin-bottom: 20px;
@@ -223,10 +225,11 @@
         width: 400px;
         margin-top: 30px;
     }
-    .warning{
-        text-align:center;
-        color:red;
-        font-size:20px;
+
+    .warning {
+        text-align: center;
+        color: red;
+        font-size: 20px;
     }
 
     /* delete_check */
@@ -260,10 +263,10 @@
         /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
-        
+
         /* Could be more or less, depending on screen size */
         border-radius: 15px;
-        
+
     }
 
     .close {
@@ -272,35 +275,39 @@
         cursor: pointer;
         display: block;
         width: 30px;
-        margin-bottom:50px;
+        margin-bottom: 50px;
     }
-    .form-label{
+
+    .form-label {
         font-size: 28px;
         margin-left: 120px;
     }
-    #cancel{
+
+    #cancel {
         width: 100px;
         height: 37px;
-        font-size:18px;
+        font-size: 18px;
         color: #007500;
         background-color: #a9d08d;
         cursor: pointer;
-        border:none;
+        border: none;
         border-radius: 7px;
-        margin-left:80px;
+        margin-left: 80px;
     }
-    #delete{
+
+    #delete {
         height: 37px;
         width: 100px;
-        font-size:18px;
+        font-size: 18px;
         color: white;
         background-color: #007500;
         cursor: pointer;
-        border:none;
+        border: none;
         border-radius: 7px;
-        margin-left:30px;
+        margin-left: 30px;
     }
-    .mb-3{
-        margin-bottom:50px;
+
+    .mb-3 {
+        margin-bottom: 50px;
     }
 </style>

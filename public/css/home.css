@@ -217,10 +217,10 @@ table {
 .text-danger{
     color: red;
 }
-.alertalert-danger{
+.alert-danger{
     color: red;
 }
-.alert{
-    color: red;
+.alert-success{
+    color: green;
 }
 
