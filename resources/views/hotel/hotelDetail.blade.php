@@ -172,17 +172,10 @@
         margin-bottom: 15px;
         border: #a9d08d solid 2px;
     }
-<<<<<<< HEAD
     .commentDetail textarea{
         background-color: white;
         border:none;
         resize:none;
-=======
-
-    .commentDetail textarea {
-        border: none;
-        resize: none;
->>>>>>> 4da20c5fb176db1755246c555c46c0fa7a0fb60c
         width: 100%;
         height: 55px;
         font-size: 18px;
