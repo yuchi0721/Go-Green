@@ -16,7 +16,10 @@
             <ul>
                 <li><img src="{{ asset ('icons/hotel.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->name }}</li>
                 <li><img src="{{ asset ('icons/phone.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->phone }}</li>
-                <li><img src="{{ asset ('icons/locate.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->address }}</li>
+                <li id = "address"><img src="{{ asset ('icons/locate.png')}}" width="25" alt="">&nbsp;&nbsp;{{ $hotel->address }}</li>
+                <li><iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBI0jG3xdjhjvKHost8FjD1fKJZjKyXM5g
+    &q={{ $hotel->address }}">
+                    </iframe></li>
                 <li id="info">旅店簡介：{{ $hotel->intro }}</li>
             </ul>
         </span>
@@ -44,13 +47,6 @@
             @foreach($comments as $comment)
             <li class="userIcon"> <span><i class="fas fa-user"></i><br></span>{{ $comment->user_id }}</li>
             <li class="commentDetail"><textarea disabled>{{ $comment->comment }}</textarea></li>
-            <!-- @if($isAdmin)
-            <li><button form="delete_hotel_comment_{{$comment->id}}" class="crud-btn"><i class="fas fa-trash"></i></button></li>
-            <form action="/delete-hotel-comment/{{$comment->id}}" method="POST" id="delete_hotel_comment_{{$comment->id}}" style="display: none;">
-                @csrf
-                @method('delete')
-            </form>
-            @endif -->
             @if($isAdmin)
             <div id="check_delete_hotel_comment_{{$comment->id}}" class="modal">
                 <div class="modal-content">
@@ -84,7 +80,6 @@
 </div>
 
 @endsection
-
 <script>
     function open_modal(id) {
         var modal = document.getElementById(id);
@@ -172,10 +167,11 @@
         margin-bottom: 15px;
         border: #a9d08d solid 2px;
     }
-    .commentDetail textarea{
+
+    .commentDetail textarea {
         background-color: white;
-        border:none;
-        resize:none;
+        border: none;
+        resize: none;
         width: 100%;
         height: 55px;
         font-size: 18px;
